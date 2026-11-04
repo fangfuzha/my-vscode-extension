@@ -1,0 +1,67 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: '只打包验证，不真正发布到市场'
+        type: boolean
+        default: false
+
+# OIDC 受信发布需要 id-token: write 权限来换取市场令牌
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type check
+        run: pnpm run typecheck
+
+      - name: Build bundle
+        run: pnpm run package
+
+      - name: Check version matches tag
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          PKG_VERSION="$(node -p "require('./package.json').version")"
+          if [ "$TAG_VERSION" != "$PKG_VERSION" ]; then
+            echo "::error::tag $GITHUB_REF_NAME 与 package.json 版本 $PKG_VERSION 不一致"
+            exit 1
+          fi
+
+      - name: Package VSIX
+        run: pnpm exec vsce package --no-dependencies --allow-missing-repository
+
+      - name: Publish to Visual Studio Marketplace (OIDC trusted publishing)
+        if: ${{ !inputs.dry-run }}
+        run: pnpm exec vsce publish --oidc --no-dependencies --allow-missing-repository
+
+      - name: Upload VSIX artifact
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: vsix
+          path: '*.vsix'
+          if-no-files-found: ignore

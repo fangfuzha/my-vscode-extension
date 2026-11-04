@@ -1,0 +1,14 @@
+packages:
+  - '.'
+
+# 被忽略安装脚本的依赖不再让 install 直接失败（仅警告）
+strictDepBuilds: false
+
+# 需要执行安装脚本的依赖（esbuild 需要用它自己的 postinstall 安装二进制）
+onlyBuiltDependencies:
+  - esbuild
+
+# 明确忽略安装脚本的依赖：仅发布到市场时才需要，本地打包用不到
+ignoredBuiltDependencies:
+  - keytar
+  - '@vscode/vsce-sign'

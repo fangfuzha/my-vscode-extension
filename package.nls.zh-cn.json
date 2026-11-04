@@ -1,0 +1,4 @@
+{
+  "extension.displayName": "我的 VS Code 扩展",
+  "extension.description": "一个基于 TypeScript 与 esbuild 的 VS Code 扩展脚手架，支持 F5 调试。"
+}

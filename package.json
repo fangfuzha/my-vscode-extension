@@ -1,0 +1,49 @@
+{
+  "name": "my-vscode-extension",
+  "displayName": "%extension.displayName%",
+  "description": "%extension.description%",
+  "version": "0.0.1",
+  "publisher": "fangfuzha",
+  "packageManager": "pnpm@12.15.0",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.144.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "vscode",
+    "extension"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "l10n": "./l10n",
+  "files": [
+    "dist/**",
+    "l10n/bundle.l10n*.json",
+    "package.nls.json",
+    "package.nls.zh-cn.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "vscode:prepublish": "pnpm run package",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "node esbuild.js --production",
+    "package:dev": "node esbuild.js",
+    "watch:bundle": "node esbuild.js --watch",
+    "vsix": "vsce package --no-dependencies",
+    "typecheck": "tsc -p ./ --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/vscode": "^1.144.0",
+    "@vscode/vsce": "^4.1.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2"
+  }
+}

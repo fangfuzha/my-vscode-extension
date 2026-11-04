@@ -1,0 +1,4 @@
+{
+  "extension.displayName": "My VS Code Extension",
+  "extension.description": "A VS Code extension scaffold with TypeScript, esbuild bundling and F5 debugging."
+}
