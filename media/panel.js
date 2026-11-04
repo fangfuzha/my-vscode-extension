@@ -47,6 +47,15 @@
     setStatus('context7', configured ? strings.context7Configured : strings.context7NotConfigured);
   }
 
+  function showSection(name) {
+    document.querySelectorAll('[data-section]').forEach(function (section) {
+      section.classList.toggle('active', section.dataset.section === name);
+    });
+    document.querySelectorAll('[data-nav]').forEach(function (link) {
+      link.classList.toggle('active', link.dataset.nav === name);
+    });
+  }
+
   // 许可证列表来自 API，属于数据填充，不改变页面结构
   function fillLicenses(items) {
     const select = document.querySelector('select[data-dynamic="licenses"]');
@@ -80,6 +89,18 @@
     button.addEventListener('click', function () {
       post('action', { action: button.dataset.action });
     });
+
+    document.querySelectorAll('[data-nav]').forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        showSection(link.dataset.nav);
+        window.history.replaceState(null, '', '#' + link.dataset.nav);
+      });
+    });
+
+    if (window.location.hash) {
+      showSection(window.location.hash.slice(1));
+    }
   });
 
   window.addEventListener('message', function (event) {

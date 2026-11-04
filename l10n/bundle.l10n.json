@@ -65,5 +65,14 @@
   "Context7: no API key is configured.": "Context7: no API key is configured.",
   "Context7: the API key is valid.": "Context7: the API key is valid.",
   "Context7: the API key was rejected by Context7.": "Context7: the API key was rejected by Context7.",
-  "Context7: the API key could not be verified because Context7 did not answer.": "Context7: the API key could not be verified because Context7 did not answer."
+  "Context7: the API key could not be verified because Context7 did not answer.": "Context7: the API key could not be verified because Context7 did not answer.",
+  "DeepWiki": "DeepWiki",
+  "Read public repository documentation with DeepWiki, or use Devin authentication for private repositories.": "Read public repository documentation with DeepWiki, or use Devin authentication for private repositories.",
+  "DeepWiki connection mode": "DeepWiki connection mode",
+  "Public mode uses DeepWiki without authentication. Devin mode uses your Devin API key for private repositories.": "Public mode uses DeepWiki without authentication. Devin mode uses your Devin API key for private repositories.",
+  "Public DeepWiki": "Public DeepWiki",
+  "Devin authenticated": "Devin authenticated",
+  "Devin API key": "Devin API key",
+  "Required for Devin mode. Generate a key at app.devin.ai/settings/api-keys.": "Required for Devin mode. Generate a key at app.devin.ai/settings/api-keys.",
+  "Get Devin API key": "Get Devin API key"
 }

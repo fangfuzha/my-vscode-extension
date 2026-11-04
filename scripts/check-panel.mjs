@@ -38,6 +38,7 @@ for (const action of dataActions) {
 
 const STATIC_TOKENS = [
   'cspSource',
+  'picoUri',
   'title',
   'styleUri',
   'scriptUri',

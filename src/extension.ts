@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 
 import { SettingsStore } from './config/store';
 import { registerContext7Mcp } from './context7/mcp';
+import { registerDeepWikiMcp } from './deepwiki/mcp';
 import { getSessionToken } from './license/api';
 import { addDefaultLicense, addLicense } from './license/commands';
 import {
@@ -17,13 +18,13 @@ export function activate(context: vscode.ExtensionContext): void {
   store.init();
 
   const context7Mcp = registerContext7Mcp(context, store);
+  const deepWikiMcp = registerDeepWikiMcp(context, store);
   const status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
   status.command = 'my-vscode-extension.openManager';
   context.subscriptions.push(status);
 
   const updateStatus = () => {
-    const settings = store.getLicense();
-    status.text = `$(law) ${settings.defaultKey || vscode.l10n.t('License')}`;
+    status.text = '$(law)';
     status.tooltip = vscode.l10n.t('Open Manager');
     status.show();
   };
@@ -59,6 +60,14 @@ export function activate(context: vscode.ExtensionContext): void {
           break;
         case 'refreshContext7':
           await context7Mcp.refresh();
+          break;
+        case 'refreshDeepWiki':
+          await deepWikiMcp.refresh();
+          break;
+        case 'openDeepWikiApiKeys':
+          await vscode.env.openExternal(
+            vscode.Uri.parse('https://app.devin.ai/settings/api-keys')
+          );
           break;
         default:
           break;

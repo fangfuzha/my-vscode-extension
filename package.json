@@ -52,6 +52,10 @@
       {
         "id": "fangfuzha/context7",
         "label": "Context7"
+      },
+      {
+        "id": "fangfuzha/deepwiki",
+        "label": "DeepWiki"
       }
     ],
     "commands": [
@@ -119,6 +123,7 @@
     "typecheck": "tsc -p ./ --noEmit"
   },
   "devDependencies": {
+    "@picocss/pico": "^2.1.1",
     "@types/node": "^26.6.6",
     "@types/vscode": "^1.144.0",
     "@vscode/vsce": "^4.1.0",

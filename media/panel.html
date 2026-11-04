@@ -4,13 +4,28 @@
 <meta charset="UTF-8" />
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src {{cspSource}}; script-src {{cspSource}};" />
 <title>{{title}}</title>
+<link rel="stylesheet" href="{{picoUri}}" />
 <link rel="stylesheet" href="{{styleUri}}" />
 </head>
 <body>
-<h1>{{heading}}</h1>
+<header class="page-header">
+  <div>
+    <p class="eyebrow">fangfuzha-vscode-extension</p>
+    <h1>{{heading}}</h1>
+  </div>
+</header>
+
+<div class="workspace">
+  <nav class="section-nav" aria-label="{{heading}}">
+    <a href="#license" class="active" data-nav="license">{{section.license.title}}</a>
+    <a href="#context7" data-nav="context7">{{section.context7.title}}</a>
+    <a href="#deepwiki" data-nav="deepwiki">{{section.deepwiki.title}}</a>
+    <a href="#github" data-nav="github">{{section.github.title}}</a>
+  </nav>
+  <main>
 
 <!-- 许可证分区：外观写在这里，值由脚本填充 -->
-<section data-section="license">
+<section data-section="license" class="settings-section active">
   <h2>{{section.license.title}}</h2>
   <p class="desc">{{section.license.description}}</p>
 
@@ -61,7 +76,7 @@
 </section>
 
 <!-- Context7 MCP 分区 -->
-<section data-section="context7">
+<section data-section="context7" class="settings-section">
   <h2>{{section.context7.title}}</h2>
   <p class="desc">{{section.context7.description}}</p>
   <div class="field">
@@ -80,8 +95,30 @@
   </div>
 </section>
 
+<!-- DeepWiki MCP 分区 -->
+<section data-section="deepwiki" class="settings-section">
+  <h2>{{section.deepwiki.title}}</h2>
+  <p class="desc">{{section.deepwiki.description}}</p>
+  <div class="field">
+    <label for="deepwiki.authMode">{{field.deepwiki.authMode.label}}</label>
+    <select id="deepwiki.authMode" data-key="deepwiki.authMode">
+      <option value="public">{{option.deepwiki.authMode.0}}</option>
+      <option value="devin">{{option.deepwiki.authMode.1}}</option>
+    </select>
+    <div class="hint">{{field.deepwiki.authMode.hint}}</div>
+  </div>
+  <div class="field">
+    <label for="deepwiki.apiKey">{{field.deepwiki.apiKey.label}}</label>
+    <input type="password" id="deepwiki.apiKey" data-key="deepwiki.apiKey" autocomplete="off" />
+    <div class="hint">{{field.deepwiki.apiKey.hint}}</div>
+  </div>
+  <div class="actions">
+    <button class="secondary" data-action="openDeepWikiApiKeys">{{action.openDeepWikiApiKeys.label}}</button>
+  </div>
+</section>
+
 <!-- GitHub 账号分区 -->
-<section data-section="github">
+<section data-section="github" class="settings-section">
   <h2>{{section.github.title}}</h2>
   <p class="desc">{{section.github.description}}</p>
   <div class="status" data-status="auth"></div>
@@ -96,6 +133,8 @@
   <button class="secondary" id="reset">{{button.reset.label}}</button>
 </div>
 <div class="status" id="message"></div>
+  </main>
+</div>
 <script src="{{scriptUri}}"></script>
 </body>
 </html>

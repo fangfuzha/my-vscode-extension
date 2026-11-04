@@ -77,10 +77,12 @@ async function renderHtml(
     vscode.Uri.joinPath(extensionUri, 'media', 'panel.html')
   );
   const cssUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'media', 'panel.css'));
+  const picoUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'media', 'pico.min.css'));
   const jsUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'media', 'panel.js'));
 
   const tokens: Record<string, string> = {
     cspSource: webview.cspSource,
+    picoUri: picoUri.toString(),
     styleUri: cssUri.toString(),
     scriptUri: jsUri.toString(),
     ...buildTokens()
@@ -145,6 +147,7 @@ export async function openManagerPanel(
         await deps.store.update(message.values ?? {});
         deps.onSettingsChanged();
         await deps.runAction('refreshContext7');
+        await deps.runAction('refreshDeepWiki');
         void panel?.webview.postMessage({
           type: 'saved',
           values: await deps.store.getAll(),
@@ -155,6 +158,8 @@ export async function openManagerPanel(
       case 'reset': {
         await deps.store.reset();
         deps.onSettingsChanged();
+        await deps.runAction('refreshContext7');
+        await deps.runAction('refreshDeepWiki');
         void panel?.webview.postMessage({
           type: 'saved',
           values: await deps.store.getAll(),

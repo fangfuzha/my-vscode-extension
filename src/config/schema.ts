@@ -173,6 +173,46 @@ export const SECTIONS: SectionDescriptor[] = [
         ]
       }
     ]
+  },
+  {
+    id: 'deepwiki',
+    title: vscode.l10n.t('DeepWiki'),
+    description: vscode.l10n.t(
+      'Read public repository documentation with DeepWiki, or use Devin authentication for private repositories.'
+    ),
+    fields: [
+      {
+        key: 'deepwiki.authMode',
+        type: 'select',
+        label: vscode.l10n.t('DeepWiki connection mode'),
+        hint: vscode.l10n.t(
+          'Public mode uses DeepWiki without authentication. Devin mode uses your Devin API key for private repositories.'
+        ),
+        defaultValue: 'public',
+        options: [
+          { value: 'public', label: vscode.l10n.t('Public DeepWiki') },
+          { value: 'devin', label: vscode.l10n.t('Devin authenticated') }
+        ]
+      },
+      {
+        key: 'deepwiki.apiKey',
+        type: 'password',
+        label: vscode.l10n.t('Devin API key'),
+        hint: vscode.l10n.t(
+          'Required for Devin mode. Generate a key at app.devin.ai/settings/api-keys.'
+        ),
+        defaultValue: '',
+        storage: 'secret'
+      }
+    ],
+    actions: [
+      {
+        id: 'openDeepWikiApiKeys',
+        label: vscode.l10n.t('Get Devin API key'),
+        action: 'openDeepWikiApiKeys',
+        variant: 'secondary'
+      }
+    ]
   }
 ];
 

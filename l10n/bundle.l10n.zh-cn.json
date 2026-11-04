@@ -65,5 +65,14 @@
   "Context7: no API key is configured.": "Context7：未配置 API 密钥。",
   "Context7: the API key is valid.": "Context7：API 密钥有效。",
   "Context7: the API key was rejected by Context7.": "Context7：API 密钥被 Context7 拒绝。",
-  "Context7: the API key could not be verified because Context7 did not answer.": "Context7：Context7 未响应，无法验证 API 密钥。"
+  "Context7: the API key could not be verified because Context7 did not answer.": "Context7：Context7 未响应，无法验证 API 密钥。",
+  "DeepWiki": "DeepWiki",
+  "Read public repository documentation with DeepWiki, or use Devin authentication for private repositories.": "使用 DeepWiki 阅读公开仓库文档，或使用 Devin 认证访问私有仓库。",
+  "DeepWiki connection mode": "DeepWiki 连接模式",
+  "Public mode uses DeepWiki without authentication. Devin mode uses your Devin API key for private repositories.": "公开模式无需认证即可使用 DeepWiki；Devin 模式使用 Devin API 密钥访问私有仓库。",
+  "Public DeepWiki": "公开 DeepWiki",
+  "Devin authenticated": "Devin 认证",
+  "Devin API key": "Devin API 密钥",
+  "Required for Devin mode. Generate a key at app.devin.ai/settings/api-keys.": "Devin 模式需要此密钥。请在 app.devin.ai/settings/api-keys 生成密钥。",
+  "Get Devin API key": "获取 Devin API 密钥"
 }
