@@ -2,8 +2,8 @@ import * as vscode from 'vscode';
 
 import { SettingsStore } from '../config/store';
 import { SECTIONS } from '../config/schema';
-import { fetchAllLicenses, getSessionAccount, RateLimitError, signOut } from './api';
-import { LicenseItem } from './types';
+import { fetchAllLicenses, getSessionAccount, RateLimitError, signOut } from '../license/api';
+import { LicenseItem } from '../license/types';
 
 let panel: vscode.WebviewPanel | undefined;
 
