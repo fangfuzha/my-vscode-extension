@@ -6,6 +6,15 @@
   "publisher": "fangfuzha",
   "packageManager": "pnpm@12.15.0",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fangfuzha/my-vscode-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fangfuzha/my-vscode-extension/issues"
+  },
+  "homepage": "https://github.com/fangfuzha/my-vscode-extension",
+  "icon": "media/icon.png",
   "engines": {
     "vscode": "^1.144.0"
   },
@@ -29,7 +38,9 @@
     "package.nls.json",
     "package.nls.zh-cn.json",
     "README.md",
-    "LICENSE"
+    "LICENSE.md",
+    "CHANGELOG.md",
+    "media/icon.png"
   ],
   "contributes": {
     "commands": [

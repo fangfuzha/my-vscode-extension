@@ -1,5 +1,7 @@
 # My VS Code Extension
 
+![My VS Code Extension](media/icon.png)
+
 个人自用的开发辅助扩展：为项目添加 LICENSE 文件，并提供一个覆盖全部功能的
 **管理面板**（配置跨设备同步）。
 
@@ -69,6 +71,10 @@ pnpm run vsix        # 生成 .vsix 安装包
 ```
 
 生成的 `.vsix` 可通过 VS Code 的 "Install from VSIX…" 安装。
+
+## 变更记录
+
+请参阅 [CHANGELOG.md](CHANGELOG.md)。
 
 ## 自动发布
 
