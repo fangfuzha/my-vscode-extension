@@ -28,8 +28,11 @@ jobs:
       - name: Type check
         run: pnpm run typecheck
 
+      - name: Verify panel markup matches schema
+        run: node scripts/check-panel.mjs
+
       - name: Build bundle
         run: pnpm run package
 
       - name: Verify packaged file list
-        run: pnpm exec vsce ls --tree --no-dependencies --allow-missing-repository
+        run: pnpm exec vsce ls --tree --no-dependencies
