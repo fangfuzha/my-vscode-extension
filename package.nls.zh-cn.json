@@ -1,4 +1,10 @@
 {
   "extension.displayName": "我的 VS Code 扩展",
-  "extension.description": "一个基于 TypeScript 与 esbuild 的 VS Code 扩展脚手架，支持 F5 调试。"
+  "extension.description": "个人自用的开发辅助扩展：为项目添加 LICENSE 文件，并在一个面板里管理全部设置。",
+  "command.category": "我的扩展",
+  "command.licenseCategory": "许可证",
+  "command.openManager.title": "打开管理面板",
+  "command.add.title": "添加许可证",
+  "command.addMultiple.title": "添加多个许可证",
+  "command.addDefault.title": "添加默认许可证"
 }

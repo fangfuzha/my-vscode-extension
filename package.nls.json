@@ -1,4 +1,10 @@
 {
   "extension.displayName": "My VS Code Extension",
-  "extension.description": "A VS Code extension scaffold with TypeScript, esbuild bundling and F5 debugging."
+  "extension.description": "Personal developer helper: add LICENSE files to your project and manage extension settings in one panel.",
+  "command.category": "My Extension",
+  "command.licenseCategory": "License",
+  "command.openManager.title": "Open Manager",
+  "command.add.title": "Add License",
+  "command.addMultiple.title": "Add Multiple Licenses",
+  "command.addDefault.title": "Add Default License"
 }

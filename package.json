@@ -14,7 +14,8 @@
   ],
   "keywords": [
     "vscode",
-    "extension"
+    "extension",
+    "license"
   ],
   "activationEvents": [
     "onStartupFinished"
@@ -23,12 +24,37 @@
   "l10n": "./l10n",
   "files": [
     "dist/**",
+    "media/**",
     "l10n/bundle.l10n*.json",
     "package.nls.json",
     "package.nls.zh-cn.json",
     "README.md",
     "LICENSE"
   ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "my-vscode-extension.openManager",
+        "title": "%command.openManager.title%",
+        "category": "%command.category%"
+      },
+      {
+        "command": "my-vscode-extension.license.add",
+        "title": "%command.add.title%",
+        "category": "%command.licenseCategory%"
+      },
+      {
+        "command": "my-vscode-extension.license.addMultiple",
+        "title": "%command.addMultiple.title%",
+        "category": "%command.licenseCategory%"
+      },
+      {
+        "command": "my-vscode-extension.license.addDefault",
+        "title": "%command.addDefault.title%",
+        "category": "%command.licenseCategory%"
+      }
+    ]
+  },
   "scripts": {
     "vscode:prepublish": "pnpm run package",
     "compile": "tsc -p ./",

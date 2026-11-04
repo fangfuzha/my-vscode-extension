@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src {{cspSource}}; script-src {{cspSource}};" />
+<title>{{title}}</title>
+<link rel="stylesheet" href="{{styleUri}}" />
+</head>
+<body>
+<h1>{{heading}}</h1>
+
+<!-- 许可证分区：外观写在这里，值由脚本填充 -->
+<section data-section="license">
+  <h2>{{section.license.title}}</h2>
+  <p class="desc">{{section.license.description}}</p>
+
+  <div class="field">
+    <label for="license.default">{{field.license.default.label}}</label>
+    <select id="license.default" data-key="license.default" data-dynamic="licenses"></select>
+    <div class="hint">{{field.license.default.hint}}</div>
+  </div>
+
+  <div class="field">
+    <label for="license.author">{{field.license.author.label}}</label>
+    <input type="text" id="license.author" data-key="license.author" />
+    <div class="hint">{{field.license.author.hint}}</div>
+  </div>
+
+  <div class="field">
+    <label for="license.year">{{field.license.year.label}}</label>
+    <input type="text" id="license.year" data-key="license.year" />
+    <div class="hint">{{field.license.year.hint}}</div>
+  </div>
+
+  <div class="field">
+    <label for="license.filename">{{field.license.filename.label}}</label>
+    <input type="text" id="license.filename" data-key="license.filename" />
+    <div class="hint">{{field.license.filename.hint}}</div>
+  </div>
+
+  <div class="field">
+    <label for="license.extension">{{field.license.extension.label}}</label>
+    <select id="license.extension" data-key="license.extension">
+      <option value="">{{option.license.extension.0}}</option>
+      <option value=".md">{{option.license.extension.1}}</option>
+      <option value=".txt">{{option.license.extension.2}}</option>
+    </select>
+  </div>
+
+  <div class="field check">
+    <input type="checkbox" id="license.useConventionalFilename" data-key="license.useConventionalFilename" />
+    <label for="license.useConventionalFilename">{{field.license.useConventionalFilename.label}}</label>
+  </div>
+
+  <div class="actions">
+    <button class="secondary" data-action="loadLicenses">{{action.loadLicenses.label}}</button>
+    <button class="primary" data-action="addLicense">{{action.add.label}}</button>
+    <button class="secondary" data-action="addMultipleLicenses">{{action.addMultiple.label}}</button>
+    <button class="secondary" data-action="addDefaultLicense">{{action.addDefault.label}}</button>
+  </div>
+</section>
+
+<!-- GitHub 账号分区 -->
+<section data-section="github">
+  <h2>{{section.github.title}}</h2>
+  <p class="desc">{{section.github.description}}</p>
+  <div class="status" data-status="auth"></div>
+  <div class="actions">
+    <button class="primary" data-action="signIn">{{action.signIn.label}}</button>
+    <button class="secondary" data-action="signOut">{{action.signOut.label}}</button>
+  </div>
+</section>
+
+<div class="actions">
+  <button class="primary" id="save">{{button.save.label}}</button>
+  <button class="secondary" id="reset">{{button.reset.label}}</button>
+</div>
+<div class="status" id="message"></div>
+<script src="{{scriptUri}}"></script>
+</body>
+</html>

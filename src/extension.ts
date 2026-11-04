@@ -1,10 +1,79 @@
 import * as vscode from 'vscode';
 
+import { SettingsStore } from './config/store';
+import { getSessionToken } from './license/api';
+import { addDefaultLicense, addLicense } from './license/commands';
+import {
+  loadLicenseOptions,
+  openManagerPanel,
+  refreshAuthState,
+  signOutSession
+} from './license/panel';
+
 export function activate(context: vscode.ExtensionContext): void {
-  // 功能待实现：在这里注册命令、视图、监听器等。
-  // 运行时文案请使用 vscode.l10n.t('English text', { args })，
-  // 译文放在 l10n/bundle.l10n.<locale>.json。
-  void context;
+  const store = new SettingsStore(context);
+  // 一次性声明参与 Settings Sync 的全部 key。
+  store.init();
+
+  const status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
+  status.command = 'my-vscode-extension.openManager';
+  context.subscriptions.push(status);
+
+  const updateStatus = () => {
+    const settings = store.getLicense();
+    status.text = `$(law) ${settings.defaultKey || vscode.l10n.t('License')}`;
+    status.tooltip = vscode.l10n.t('Open Manager');
+    status.show();
+  };
+
+  updateStatus();
+
+  const deps = {
+    store,
+    getToken: getSessionToken,
+    onSettingsChanged: updateStatus,
+    runAction: async (action: string): Promise<void> => {
+      switch (action) {
+        case 'loadLicenses':
+          await loadLicenseOptions(deps);
+          break;
+        case 'addLicense':
+          await addLicense(deps, false);
+          break;
+        case 'addMultipleLicenses':
+          await addLicense(deps, true);
+          break;
+        case 'addDefaultLicense':
+          await addDefaultLicense(deps);
+          break;
+        case 'signIn':
+          await getSessionToken(true);
+          await refreshAuthState(deps);
+          break;
+        case 'signOut':
+          await signOutSession();
+          await refreshAuthState(deps);
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('my-vscode-extension.openManager', () =>
+      openManagerPanel(context, deps)
+    ),
+    vscode.commands.registerCommand('my-vscode-extension.license.add', () =>
+      addLicense(deps, false)
+    ),
+    vscode.commands.registerCommand('my-vscode-extension.license.addMultiple', () =>
+      addLicense(deps, true)
+    ),
+    vscode.commands.registerCommand('my-vscode-extension.license.addDefault', () =>
+      addDefaultLicense(deps)
+    )
+  );
 }
 
 export function deactivate(): void {
