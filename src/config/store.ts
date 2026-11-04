@@ -12,6 +12,7 @@ export interface LicenseSettings {
 }
 
 export type SettingValue = string | boolean;
+export type Context7AuthMode = 'token' | 'oauth';
 
 export class SettingsStore {
   constructor(private readonly context: vscode.ExtensionContext) {}
@@ -21,13 +22,13 @@ export class SettingsStore {
     this.context.globalState.setKeysForSync(SYNC_KEYS);
   }
 
-  getAll(): Record<string, SettingValue> {
+  async getAll(): Promise<Record<string, SettingValue>> {
     const values: Record<string, SettingValue> = {};
     for (const field of ALL_FIELDS) {
-      values[field.key] = this.context.globalState.get<SettingValue>(
-        field.key,
-        field.defaultValue
-      );
+      values[field.key] =
+        field.storage === 'secret'
+          ? ((await this.context.secrets.get(field.key)) ?? field.defaultValue)
+          : this.context.globalState.get<SettingValue>(field.key, field.defaultValue);
     }
     return values;
   }
@@ -42,7 +43,19 @@ export class SettingsStore {
       if (value === undefined || !FIELD_BY_KEY.has(key)) {
         continue;
       }
-      await this.context.globalState.update(key, value);
+      const field = FIELD_BY_KEY.get(key);
+      if (field?.storage === 'secret') {
+        if (typeof value !== 'string') {
+          continue;
+        }
+        if (value) {
+          await this.context.secrets.store(key, value);
+        } else {
+          await this.context.secrets.delete(key);
+        }
+      } else {
+        await this.context.globalState.update(key, value);
+      }
     }
   }
 
@@ -50,6 +63,22 @@ export class SettingsStore {
     for (const key of SYNC_KEYS) {
       await this.context.globalState.update(key, undefined);
     }
+    for (const field of ALL_FIELDS.filter((item) => item.storage === 'secret')) {
+      await this.context.secrets.delete(field.key);
+    }
+  }
+
+  getContext7ApiKey(): Thenable<string | undefined> {
+    return this.context.secrets.get('context7.apiKey');
+  }
+
+  hasContext7ApiKey(): Thenable<boolean> {
+    return this.context.secrets.get('context7.apiKey').then((value) => Boolean(value));
+  }
+
+  getContext7AuthMode(): Context7AuthMode {
+    const mode = this.get<string>('context7.authMode');
+    return mode === 'oauth' ? 'oauth' : 'token';
   }
 
   getLicense(): LicenseSettings {

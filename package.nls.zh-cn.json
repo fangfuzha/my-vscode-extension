@@ -6,5 +6,9 @@
   "command.openManager.title": "打开管理面板",
   "command.add.title": "添加许可证",
   "command.addMultiple.title": "添加多个许可证",
-  "command.addDefault.title": "添加默认许可证"
+  "command.addDefault.title": "添加默认许可证",
+  "command.context7.category": "Context7",
+  "command.context7.useTokenMode.title": "切换到 Context7 API 令牌模式",
+  "command.context7.useOAuthMode.title": "切换到 Context7 OAuth 模式",
+  "command.context7.checkApiKey.title": "检查 Context7 API 密钥"
 }

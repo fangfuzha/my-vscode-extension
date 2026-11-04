@@ -2,7 +2,7 @@
   "name": "fangfuzha-vscode-extension",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "fangfuzha",
   "packageManager": "pnpm@12.15.0",
   "license": "MIT",
@@ -19,12 +19,17 @@
     "vscode": "^1.144.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "AI",
+    "Chat"
   ],
   "keywords": [
     "vscode",
     "extension",
-    "license"
+    "license",
+    "mcp",
+    "context7",
+    "documentation"
   ],
   "activationEvents": [
     "onStartupFinished"
@@ -43,6 +48,12 @@
     "media/icon.png"
   ],
   "contributes": {
+    "mcpServerDefinitionProviders": [
+      {
+        "id": "fangfuzha/context7",
+        "label": "Context7"
+      }
+    ],
     "commands": [
       {
         "command": "my-vscode-extension.openManager",
@@ -63,8 +74,39 @@
         "command": "my-vscode-extension.license.addDefault",
         "title": "%command.addDefault.title%",
         "category": "%command.licenseCategory%"
+      },
+      {
+        "command": "my-vscode-extension.context7.useTokenMode",
+        "title": "%command.context7.useTokenMode.title%",
+        "category": "%command.context7.category%"
+      },
+      {
+        "command": "my-vscode-extension.context7.useOAuthMode",
+        "title": "%command.context7.useOAuthMode.title%",
+        "category": "%command.context7.category%"
+      },
+      {
+        "command": "my-vscode-extension.context7.checkApiKey",
+        "title": "%command.context7.checkApiKey.title%",
+        "category": "%command.context7.category%"
       }
-    ]
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "my-vscode-extension.context7.useTokenMode",
+          "when": "myVscodeExtension.context7AuthMode == oauth"
+        },
+        {
+          "command": "my-vscode-extension.context7.useOAuthMode",
+          "when": "myVscodeExtension.context7AuthMode != oauth"
+        },
+        {
+          "command": "my-vscode-extension.context7.checkApiKey",
+          "when": "myVscodeExtension.context7AuthMode != oauth"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",

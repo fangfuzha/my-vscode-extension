@@ -14,6 +14,8 @@
   并通过 VS Code Settings Sync 在多台设备间同步
 - **GitHub 登录提升配额**：用 VS Code 内置的 GitHub 登录会话获取 API 令牌，
   把速率限制从 60 次/小时提升到 5000 次/小时
+- **Context7 MCP**：注册远程 Context7 MCP 服务，让 Copilot 等 AI 助手访问最新的库文档；
+  支持 API Token 和 OAuth 登录两种认证模式；API Key 通过管理面板配置并存入 VS Code SecretStorage
 - **自动推断作者与年份**：留空时从 `git config user.name` 与仓库首次提交年份推断
 - **占位符自动替换**：MIT / Apache / GPL / WTFPL 等常见许可证的年份与作者占位符都会被替换
 - **多许可证**：可一次生成多个文件，文件名形如 `LICENSE-MIT.md`
@@ -26,6 +28,13 @@
 3. 在「许可证」分区点「加载许可证列表」，选择默认许可证，
    并填写作者、年份等选项后保存
 4. 执行 **许可证: 添加许可证** 即可在当前目录生成 LICENSE 文件
+5. 在 Context7 分区填写 API Key 后保存；清空 API Key 并保存即可移除密钥。
+   修改密钥后，在 **MCP: List Servers** 中重启 Context7 服务以应用新密钥。
+   也可以在认证模式中选择 OAuth，让 VS Code 在首次使用 Context7 时处理登录、令牌存储和刷新。
+
+Context7 MCP 提供 `resolve-library-id` 和 `get-library-docs` 工具，可在
+Copilot Chat 的 Agent 模式中使用 `use context7` 请求最新的库文档与示例，
+也可以直接引用类似 `/supabase/supabase` 的 Context7 Library ID。
 
 | 命令 | 作用 |
 | --- | --- |
@@ -42,8 +51,10 @@
 | --- | --- |
 | 许可证 | 默认许可证、作者、年份、文件名、扩展名、惯用文件名开关；加载列表 / 添加 / 批量添加 / 添加默认许可证 |
 | GitHub 账号 | 登录状态、登录与退出按钮（令牌由 VS Code 托管，不落盘） |
+| Context7 | Context7 MCP 服务、API Token/OAuth 认证和 API Key 校验 |
 
-所有配置都存放在扩展的全局状态里，并随 Settings Sync 同步：
+许可证配置存放在扩展的全局状态里，并随 Settings Sync 同步；Context7 API Key
+单独存放在 VS Code SecretStorage 中，不会写入面板配置同步数据：
 
 | 项 | 说明 |
 | --- | --- |

@@ -50,5 +50,20 @@
   "Add default license": "添加默认许可证",
   "Signing in raises the GitHub API limit from 60 to 5000 requests per hour. The token is managed by VS Code and never stored.": "登录后 GitHub API 限额从 60 次/小时提升到 5000 次/小时；令牌由 VS Code 托管，不会保存。",
   "Manager": "管理面板",
-  "Uncommon licenses": "非常见许可证"
+  "Uncommon licenses": "非常见许可证",
+  "Context7": "Context7",
+  "Connect AI assistants to up-to-date library documentation through the Context7 MCP server.": "通过 Context7 MCP 服务将 AI 助手连接到最新的库文档。",
+  "Context7 API key": "Context7 API 密钥",
+  "Optional. Get one from context7.com/dashboard. Clear the field to remove the current key.": "可选。可从 context7.com/dashboard 获取。清空输入框可移除当前密钥。",
+  "Context7 API key configured.": "已配置 Context7 API 密钥。",
+  "No Context7 API key configured.": "未配置 Context7 API 密钥。",
+  "Context7 authentication mode": "Context7 认证模式",
+  "Use an API token or let VS Code handle the Context7 OAuth sign-in flow.": "使用 API 令牌，或让 VS Code 处理 Context7 OAuth 登录流程。",
+  "API token": "API 令牌",
+  "OAuth sign-in": "OAuth 登录",
+  "Context7: the configured API key was rejected. Continuing with anonymous access.": "Context7：配置的 API 密钥被拒绝，将继续使用匿名访问。",
+  "Context7: no API key is configured.": "Context7：未配置 API 密钥。",
+  "Context7: the API key is valid.": "Context7：API 密钥有效。",
+  "Context7: the API key was rejected by Context7.": "Context7：API 密钥被 Context7 拒绝。",
+  "Context7: the API key could not be verified because Context7 did not answer.": "Context7：Context7 未响应，无法验证 API 密钥。"
 }

@@ -6,7 +6,7 @@ import * as vscode from 'vscode';
  * 面板、存储与同步会自动跟着扩展。
  */
 
-export type FieldType = 'text' | 'select' | 'checkbox';
+export type FieldType = 'text' | 'password' | 'select' | 'checkbox';
 
 export interface FieldOption {
   value: string;
@@ -21,6 +21,7 @@ export interface FieldDescriptor {
   options?: FieldOption[];
   defaultValue: string | boolean;
   dynamicOptions?: 'licenses';
+  storage?: 'secret';
 }
 
 export interface ActionDescriptor {
@@ -140,11 +141,45 @@ export const SECTIONS: SectionDescriptor[] = [
         variant: 'secondary'
       }
     ]
+  },
+  {
+    id: 'context7',
+    title: vscode.l10n.t('Context7'),
+    description: vscode.l10n.t(
+      'Connect AI assistants to up-to-date library documentation through the Context7 MCP server.'
+    ),
+    fields: [
+      {
+        key: 'context7.apiKey',
+        type: 'password',
+        label: vscode.l10n.t('Context7 API key'),
+        hint: vscode.l10n.t(
+          'Optional. Get one from context7.com/dashboard. Clear the field to remove the current key.'
+        ),
+        defaultValue: '',
+        storage: 'secret'
+      },
+      {
+        key: 'context7.authMode',
+        type: 'select',
+        label: vscode.l10n.t('Context7 authentication mode'),
+        hint: vscode.l10n.t(
+          'Use an API token or let VS Code handle the Context7 OAuth sign-in flow.'
+        ),
+        defaultValue: 'token',
+        options: [
+          { value: 'token', label: vscode.l10n.t('API token') },
+          { value: 'oauth', label: vscode.l10n.t('OAuth sign-in') }
+        ]
+      }
+    ]
   }
 ];
 
 export const ALL_FIELDS: FieldDescriptor[] = SECTIONS.flatMap((section) => section.fields ?? []);
 
-export const SYNC_KEYS: readonly string[] = ALL_FIELDS.map((field) => field.key);
+export const SYNC_KEYS: readonly string[] = ALL_FIELDS
+  .filter((field) => field.storage !== 'secret')
+  .map((field) => field.key);
 
 export const FIELD_BY_KEY = new Map(ALL_FIELDS.map((field) => [field.key, field]));

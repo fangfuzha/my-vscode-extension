@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.2] - 2026-11-04
+
+### Added
+
+- Context7 API token validation, anonymous fallback, and native OAuth authentication mode.
+- Context7 authentication controls and API key verification in the manager panel.
+
+### Fixed
+
+- Context7 API key persistence, clearing, and MCP refresh behavior.
+
 ## [0.0.1] - 2026-11-04
 
 ### Added

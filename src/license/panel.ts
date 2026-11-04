@@ -63,7 +63,9 @@ function panelStrings() {
     loading: vscode.l10n.t('Loading licenses...'),
     saved: vscode.l10n.t('Settings saved.'),
     resetDone: vscode.l10n.t('Settings reset.'),
-    signedOut: vscode.l10n.t('Not signed in (anonymous API limit: 60 requests/hour)')
+    signedOut: vscode.l10n.t('Not signed in (anonymous API limit: 60 requests/hour)'),
+    context7Configured: vscode.l10n.t('Context7 API key configured.'),
+    context7NotConfigured: vscode.l10n.t('No Context7 API key configured.')
   };
 }
 
@@ -93,7 +95,8 @@ async function currentState(deps: ManagerDeps) {
   const account = await getSessionAccount();
   const signedIn = Boolean(await deps.getToken(false));
   return {
-    values: deps.store.getAll(),
+    values: await deps.store.getAll(),
+    context7Configured: await deps.store.hasContext7ApiKey(),
     authText: signedIn
       ? vscode.l10n.t('Signed in as {0}', account ?? '')
       : vscode.l10n.t('Not signed in (anonymous API limit: 60 requests/hour)')
@@ -141,13 +144,23 @@ export async function openManagerPanel(
       case 'save': {
         await deps.store.update(message.values ?? {});
         deps.onSettingsChanged();
-        void panel?.webview.postMessage({ type: 'saved', values: deps.store.getAll() });
+        await deps.runAction('refreshContext7');
+        void panel?.webview.postMessage({
+          type: 'saved',
+          values: await deps.store.getAll(),
+          context7Configured: await deps.store.hasContext7ApiKey()
+        });
         break;
       }
       case 'reset': {
         await deps.store.reset();
         deps.onSettingsChanged();
-        void panel?.webview.postMessage({ type: 'saved', values: deps.store.getAll(), reset: true });
+        void panel?.webview.postMessage({
+          type: 'saved',
+          values: await deps.store.getAll(),
+          context7Configured: await deps.store.hasContext7ApiKey(),
+          reset: true
+        });
         break;
       }
       case 'action': {

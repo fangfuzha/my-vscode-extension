@@ -6,5 +6,9 @@
   "command.openManager.title": "Open Manager",
   "command.add.title": "Add License",
   "command.addMultiple.title": "Add Multiple Licenses",
-  "command.addDefault.title": "Add Default License"
+  "command.addDefault.title": "Add Default License",
+  "command.context7.category": "Context7",
+  "command.context7.useTokenMode.title": "Switch to Context7 API Token Mode",
+  "command.context7.useOAuthMode.title": "Switch to Context7 OAuth Mode",
+  "command.context7.checkApiKey.title": "Check Context7 API Key"
 }

@@ -50,5 +50,20 @@
   "Add default license": "Add default license",
   "Signing in raises the GitHub API limit from 60 to 5000 requests per hour. The token is managed by VS Code and never stored.": "Signing in raises the GitHub API limit from 60 to 5000 requests per hour. The token is managed by VS Code and never stored.",
   "Manager": "Manager",
-  "Uncommon licenses": "Uncommon licenses"
+  "Uncommon licenses": "Uncommon licenses",
+  "Context7": "Context7",
+  "Connect AI assistants to up-to-date library documentation through the Context7 MCP server.": "Connect AI assistants to up-to-date library documentation through the Context7 MCP server.",
+  "Context7 API key": "Context7 API key",
+  "Optional. Get one from context7.com/dashboard. Clear the field to remove the current key.": "Optional. Get one from context7.com/dashboard. Clear the field to remove the current key.",
+  "Context7 API key configured.": "Context7 API key configured.",
+  "No Context7 API key configured.": "No Context7 API key configured.",
+  "Context7 authentication mode": "Context7 authentication mode",
+  "Use an API token or let VS Code handle the Context7 OAuth sign-in flow.": "Use an API token or let VS Code handle the Context7 OAuth sign-in flow.",
+  "API token": "API token",
+  "OAuth sign-in": "OAuth sign-in",
+  "Context7: the configured API key was rejected. Continuing with anonymous access.": "Context7: the configured API key was rejected. Continuing with anonymous access.",
+  "Context7: no API key is configured.": "Context7: no API key is configured.",
+  "Context7: the API key is valid.": "Context7: the API key is valid.",
+  "Context7: the API key was rejected by Context7.": "Context7: the API key was rejected by Context7.",
+  "Context7: the API key could not be verified because Context7 did not answer.": "Context7: the API key could not be verified because Context7 did not answer."
 }

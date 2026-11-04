@@ -60,6 +60,26 @@
   </div>
 </section>
 
+<!-- Context7 MCP 分区 -->
+<section data-section="context7">
+  <h2>{{section.context7.title}}</h2>
+  <p class="desc">{{section.context7.description}}</p>
+  <div class="field">
+    <label for="context7.authMode">{{field.context7.authMode.label}}</label>
+    <select id="context7.authMode" data-key="context7.authMode">
+      <option value="token">{{option.context7.authMode.0}}</option>
+      <option value="oauth">{{option.context7.authMode.1}}</option>
+    </select>
+    <div class="hint">{{field.context7.authMode.hint}}</div>
+  </div>
+  <div class="field">
+    <label for="context7.apiKey">{{field.context7.apiKey.label}}</label>
+    <input type="password" id="context7.apiKey" data-key="context7.apiKey" autocomplete="off" />
+    <div class="hint">{{field.context7.apiKey.hint}}</div>
+    <div class="status" data-status="context7"></div>
+  </div>
+</section>
+
 <!-- GitHub 账号分区 -->
 <section data-section="github">
   <h2>{{section.github.title}}</h2>

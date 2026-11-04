@@ -43,6 +43,10 @@
     }
   }
 
+  function setContext7Status(configured) {
+    setStatus('context7', configured ? strings.context7Configured : strings.context7NotConfigured);
+  }
+
   // 许可证列表来自 API，属于数据填充，不改变页面结构
   function fillLicenses(items) {
     const select = document.querySelector('select[data-dynamic="licenses"]');
@@ -84,6 +88,7 @@
     if (message.type === 'init') {
       strings = message.strings || {};
       applyValues(message.values || {});
+      setContext7Status(!!message.context7Configured);
       if (message.authText) {
         setStatus('auth', message.authText);
       }
@@ -91,6 +96,9 @@
       fillLicenses(message.items || []);
     } else if (message.type === 'saved') {
       applyValues(message.values || {});
+      if (message.context7Configured !== undefined) {
+        setContext7Status(!!message.context7Configured);
+      }
       document.getElementById('message').textContent = message.reset ? strings.resetDone : strings.saved;
     } else if (message.type === 'auth') {
       setStatus('auth', message.text || strings.signedOut || '');
