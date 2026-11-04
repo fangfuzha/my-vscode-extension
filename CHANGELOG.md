@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.3] - 2026-11-04
+
+### Added
+
+- DeepWiki MCP support with public and Devin-authenticated connection modes.
+- Manager panel navigation and bundled Pico.css styling.
+
+### Changed
+
+- Simplified the status bar item to an icon-only control.
+
 ## [0.0.2] - 2026-11-04
 
 ### Added
