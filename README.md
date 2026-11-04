@@ -2,39 +2,23 @@
 
 ![My VS Code Extension](media/icon.png)
 
-个人自用的开发辅助扩展：为项目添加 LICENSE 文件，并提供一个覆盖全部功能的
-**管理面板**（配置跨设备同步）。
+个人自用的开发辅助扩展：生成 LICENSE 文件、在源码里预览与优化 SVG，并接入 Context7 与 DeepWiki 两个 MCP 服务。
+全部配置集中在一个**管理面板**里，并随 VS Code Settings Sync 在多台设备间同步。
 
 ## 功能
 
-- **状态栏入口**：左下角状态栏显示许可证图标，点击打开管理面板
-- **管理面板**：整个扩展的配置中心——按功能分区展示设置，
-  后续接入的新功能会各自成块出现在这里
-- **配置跨设备同步**：面板里的配置存放在全局状态中，
-  并通过 VS Code Settings Sync 在多台设备间同步
-- **GitHub 登录提升配额**：用 VS Code 内置的 GitHub 登录会话获取 API 令牌，
-  把速率限制从 60 次/小时提升到 5000 次/小时
-- **Context7 MCP**：注册远程 Context7 MCP 服务，让 Copilot 等 AI 助手访问最新的库文档；
-  支持 API Token 和 OAuth 登录两种认证模式；API Key 通过管理面板配置并存入 VS Code SecretStorage
-- **自动推断作者与年份**：留空时从 `git config user.name` 与仓库首次提交年份推断
-- **占位符自动替换**：MIT / Apache / GPL / WTFPL 等常见许可证的年份与作者占位符都会被替换
-- **多许可证**：可一次生成多个文件，文件名形如 `LICENSE-MIT.md`
-- 中英文双语界面，随 VS Code 语言环境自动切换
+- **许可证**：从 GitHub 许可证目录挑选一个或多个，一键生成 LICENSE 文件；作者与年份可从 git 自动推断
+- **源码里的 SVG 预览**：悬停 SVG 片段看缩略图与体积，行号旁还会显示一个小的 SVG 图标
+- **SVG 优化**：用 SVGO 压缩独立 `.svg` 文件或源码里的内联片段，并提示体积节省比例
+- **MCP**：注册 Context7 与 DeepWiki 两个 MCP 服务器，供 AI 助手读取库文档与仓库文档
+- **GitHub 登录**：把许可证接口的速率限制从 60 次/小时提升到 5000 次/小时（令牌由 VS Code 托管，不落盘）
+- **中英文双语**：随 VS Code 语言环境自动切换
 
-## 使用
+## 快速上手
 
-1. 打开项目目录
-2. 点击状态栏的许可证图标，或执行命令面板中的 **我的扩展: 打开管理面板**
-3. 在「许可证」分区点「加载许可证列表」，选择默认许可证，
-   并填写作者、年份等选项后保存
-4. 执行 **许可证: 添加许可证** 即可在当前目录生成 LICENSE 文件
-5. 在 Context7 分区填写 API Key 后保存；清空 API Key 并保存即可移除密钥。
-   修改密钥后，在 **MCP: List Servers** 中重启 Context7 服务以应用新密钥。
-   也可以在认证模式中选择 OAuth，让 VS Code 在首次使用 Context7 时处理登录、令牌存储和刷新。
-
-Context7 MCP 提供 `resolve-library-id` 和 `get-library-docs` 工具，可在
-Copilot Chat 的 Agent 模式中使用 `use context7` 请求最新的库文档与示例，
-也可以直接引用类似 `/supabase/supabase` 的 Context7 Library ID。
+1. 点击状态栏图标，或执行命令面板中的 **我的扩展: 打开管理面板**
+2. 在「许可证」分区点「加载许可证列表」，选择默认许可证；需要时在「SVG」「Context7」「DeepWiki」「GitHub 账号」分区继续配置
+3. 保存后按需执行下面的命令
 
 | 命令 | 作用 |
 | --- | --- |
@@ -43,57 +27,26 @@ Copilot Chat 的 Agent 模式中使用 `use context7` 请求最新的库文档�
 | `License: Add Multiple Licenses` | 添加多个许可证到项目 |
 | `License: Add Default License` | 直接添加默认许可证 |
 
-## 管理面板
+SVG 文件的图像预览用 VS Code 内置的 Image Preview 即可；扩展额外提供源码里的悬停预览与行号槽图标。
+打开 `.svg` 文件时，编辑器标题栏右上角会出现唯一的优化按钮（闪电图标），点击即压缩当前文件；
+在源码里悬停 SVG 片段可以看到缩略图与体积，点其中的「优化 SVG」链接能只压缩那一段内联 SVG。
 
-面板按功能分区，每个分区包含该功能的配置项与操作按钮：
+> SVGO 的目标是「渲染结果一致」而不是字节级无损：若 SVG 依赖外部 CSS、动画、脚本或 sprite 引用，
+> 建议在面板里关掉「移除 class 属性」「移除注释」「移除 DOCTYPE」，并保持「清理未使用的 ID」关闭。
 
-| 分区 | 内容 |
-| --- | --- |
-| 许可证 | 默认许可证、作者、年份、文件名、扩展名、惯用文件名开关；加载列表 / 添加 / 批量添加 / 添加默认许可证 |
-| GitHub 账号 | 登录状态、登录与退出按钮（令牌由 VS Code 托管，不落盘） |
-| Context7 | Context7 MCP 服务、API Token/OAuth 认证和 API Key 校验 |
+## 文档
 
-许可证配置存放在扩展的全局状态里，并随 Settings Sync 同步；Context7 API Key
-单独存放在 VS Code SecretStorage 中，不会写入面板配置同步数据：
+各功能的完整说明见 [docs/](docs/README.md)：
 
-| 项 | 说明 |
-| --- | --- |
-| 默认许可证 | 选中的许可证，也是「添加默认许可证」使用的那个 |
-| 作者 | 留空则使用 `git config user.name` |
-| 年份 | 留空则使用仓库首次提交的年份 |
-| 文件名 | 默认 `LICENSE`；GPL / Unlicense 等会使用惯用文件名（COPYING / UNLICENSE） |
-| 文件扩展名 | 无、`.md` 或 `.txt` |
+- [SVG 模块](docs/svg-module.md) —— 悬停预览、行号槽、框架识别与 SVGO 优化的全部细节
+- [MCP 模块](docs/mcp-module.md) —— Context7 与 DeepWiki 的接入、认证与配置
+- [License 模块](docs/license-module.md) —— 许可证生成的全流程与配置项
 
-## 多语言
+## 调试
 
-- 命令标题、扩展名称等界面元素取自 `package.nls.json` / `package.nls.zh-cn.json`
-- 运行时的提示消息取自 `l10n/bundle.l10n.json` / `l10n/bundle.l10n.<locale>.json`
-
-新增一种语言时，直接复制对应文件并改名即可，例如把
-`package.nls.zh-cn.json` 复制为 `package.nls.ja.json` 后填写日文译文。
-VS Code 会按当前语言环境自动加载。
-
-## 打包发布
-
-```bash
-pnpm install
-pnpm run package     # 打包到 dist/extension.js
-pnpm run vsix        # 生成 .vsix 安装包
-```
-
-生成的 `.vsix` 可通过 VS Code 的 "Install from VSIX…" 安装。
+在 VS Code 中打开本仓库并按 `F5`，会启动扩展开发宿主（会先自动打包）。
+运行时日志见「输出」面板中选择扩展宿主；配置项改动后可点管理面板的「保存」再观察效果。
 
 ## 变更记录
 
 请参阅 [CHANGELOG.md](CHANGELOG.md)。
-
-## 自动发布
-
-仓库内置 GitHub Actions 工作流：
-
-- 推送到 `main` 或提交 PR 时自动跑校验（类型检查、构建、打包文件清单检查）
-- 推送 `v*` 标签时自动打包并发布到 Visual Studio Marketplace
-
-发布使用 **OIDC 受信发布**，无需在仓库里保存 PAT：
-工作流通过 `id-token: write` 权限向 GitHub 换取 OIDC 令牌，再向 Marketplace 换取短期会话令牌完成发布。
-前提是已在 Marketplace 后台为该 publisher、仓库与工作流文件 `publish.yml` 配置好受信发布策略。

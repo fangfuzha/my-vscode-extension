@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.4] - 2026-11-04
+
+### Added
+
+- SVG module: hover previews, gutter icons, framework-aware inline SVG detection and SVGO optimization.
+- Manager panel gained an SVG section with preview and optimization settings.
+- SVG hover previews now report the intrinsic dimensions (width x height).
+- SVGO plugin toggles: remove viewBox, remove width/height, prefix IDs, merge paths, convert shapes to paths, collapse groups.
+- Module documentation under `docs/` covering the SVG, MCP (Context7 + DeepWiki) and license modules.
+
+### Changed
+
+- Manager panel groups the SVG settings into "Preview options" and "SVGO optimization options".
+- The GitHub sign-in and sign-out buttons are mutually exclusive; only the one matching the current session is shown.
+
+### Fixed
+
+- The SVG section description now resolves in every locale; it previously fell back to English because the translation key was missing.
+- Removed runtime localization entries that no longer had a matching call site.
+
 ## [0.0.3] - 2026-11-04
 
 ### Added

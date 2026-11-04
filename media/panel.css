@@ -30,6 +30,9 @@ h2 { margin-top: 0; }
 .settings-section.active { display: block; }
 .desc { color: var(--vscode-descriptionForeground); }
 .hint { color: var(--vscode-descriptionForeground); font-size: 0.85rem; }
+.group-title { margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--vscode-widget-border, rgba(128,128,128,0.25)); font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--vscode-descriptionForeground); }
+.group-title:first-of-type { margin-top: 6px; }
+.actions button[hidden] { display: none; }
 .check { display: flex; align-items: center; gap: 8px; }
 .check label { margin: 0; }
 .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }

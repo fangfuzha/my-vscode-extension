@@ -2,7 +2,7 @@
   "name": "fangfuzha-vscode-extension",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "fangfuzha",
   "packageManager": "pnpm@12.15.0",
   "license": "MIT",
@@ -80,6 +80,24 @@
         "category": "%command.licenseCategory%"
       },
       {
+        "command": "my-vscode-extension.svg.optimize",
+        "title": "%command.svg.optimize.title%",
+        "category": "%command.svg.category%",
+        "icon": "$(zap)"
+      },
+
+      {
+        "command": "my-vscode-extension.svg.optimizeFromHover",
+        "title": "%command.svg.optimizeFromHover.title%",
+        "category": "%command.svg.category%",
+        "icon": "$(zap)"
+      },
+      {
+        "command": "my-vscode-extension.showLog",
+        "title": "%command.showLog.title%",
+        "category": "%command.category%"
+      },
+      {
         "command": "my-vscode-extension.context7.useTokenMode",
         "title": "%command.context7.useTokenMode.title%",
         "category": "%command.context7.category%"
@@ -98,6 +116,14 @@
     "menus": {
       "commandPalette": [
         {
+          "command": "my-vscode-extension.svg.optimize",
+          "when": "false"
+        },
+        {
+          "command": "my-vscode-extension.svg.optimizeFromHover",
+          "when": "false"
+        },
+        {
           "command": "my-vscode-extension.context7.useTokenMode",
           "when": "myVscodeExtension.context7AuthMode == oauth"
         },
@@ -108,6 +134,13 @@
         {
           "command": "my-vscode-extension.context7.checkApiKey",
           "when": "myVscodeExtension.context7AuthMode != oauth"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "my-vscode-extension.svg.optimize",
+          "when": "resourceExtname == .svg",
+          "group": "navigation"
         }
       ]
     }
@@ -129,5 +162,8 @@
     "@vscode/vsce": "^4.1.0",
     "esbuild": "^0.28.2",
     "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "svgo": "^4.1.0"
   }
 }

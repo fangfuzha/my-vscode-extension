@@ -4,11 +4,15 @@
   "command.category": "My Extension",
   "command.licenseCategory": "License",
   "command.openManager.title": "Open Manager",
+  "command.showLog.title": "Show Extension Log",
   "command.add.title": "Add License",
   "command.addMultiple.title": "Add Multiple Licenses",
   "command.addDefault.title": "Add Default License",
   "command.context7.category": "Context7",
   "command.context7.useTokenMode.title": "Switch to Context7 API Token Mode",
   "command.context7.useOAuthMode.title": "Switch to Context7 OAuth Mode",
-  "command.context7.checkApiKey.title": "Check Context7 API Key"
+  "command.context7.checkApiKey.title": "Check Context7 API Key",
+  "command.svg.category": "SVG",
+  "command.svg.optimize.title": "Optimize SVG",
+  "command.svg.optimizeFromHover.title": "Optimize SVG from Hover"
 }

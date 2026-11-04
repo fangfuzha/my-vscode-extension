@@ -43,6 +43,14 @@
     }
   }
 
+  // 登录与登出互斥：按登录态只显示其中一个按钮
+  function applyAuthState(signedIn) {
+    document.querySelectorAll('[data-auth-show]').forEach(function (element) {
+      const wanted = element.dataset.authShow === 'signedIn';
+      element.hidden = wanted !== signedIn;
+    });
+  }
+
   function setContext7Status(configured) {
     setStatus('context7', configured ? strings.context7Configured : strings.context7NotConfigured);
   }
@@ -110,6 +118,7 @@
       strings = message.strings || {};
       applyValues(message.values || {});
       setContext7Status(!!message.context7Configured);
+      applyAuthState(!!message.signedIn);
       if (message.authText) {
         setStatus('auth', message.authText);
       }
@@ -122,6 +131,7 @@
       }
       document.getElementById('message').textContent = message.reset ? strings.resetDone : strings.saved;
     } else if (message.type === 'auth') {
+      applyAuthState(!!message.signedIn);
       setStatus('auth', message.text || strings.signedOut || '');
     } else if (message.type === 'error') {
       document.getElementById('message').textContent = message.message;

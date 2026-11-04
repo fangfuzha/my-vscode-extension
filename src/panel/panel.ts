@@ -31,6 +31,10 @@ function buildTokens(): Record<string, string> {
       tokens[`section.${section.id}.description`] = section.description;
     }
 
+    for (const group of section.groups ?? []) {
+      tokens[`group.${section.id}.${group.id}.title`] = group.title;
+    }
+
     for (const field of section.fields ?? []) {
       tokens[`field.${field.key}.label`] = field.label;
       if (field.hint) {
@@ -99,6 +103,7 @@ async function currentState(deps: ManagerDeps) {
   return {
     values: await deps.store.getAll(),
     context7Configured: await deps.store.hasContext7ApiKey(),
+    signedIn,
     authText: signedIn
       ? vscode.l10n.t('Signed in as {0}', account ?? '')
       : vscode.l10n.t('Not signed in (anonymous API limit: 60 requests/hour)')
@@ -138,6 +143,7 @@ export async function openManagerPanel(
         void panel?.webview.postMessage({
           type: 'init',
           values: next.values,
+          signedIn: next.signedIn,
           authText: next.authText,
           strings: panelStrings()
         });
@@ -148,6 +154,7 @@ export async function openManagerPanel(
         deps.onSettingsChanged();
         await deps.runAction('refreshContext7');
         await deps.runAction('refreshDeepWiki');
+        await deps.runAction('refreshSvg');
         void panel?.webview.postMessage({
           type: 'saved',
           values: await deps.store.getAll(),
@@ -160,6 +167,7 @@ export async function openManagerPanel(
         deps.onSettingsChanged();
         await deps.runAction('refreshContext7');
         await deps.runAction('refreshDeepWiki');
+        await deps.runAction('refreshSvg');
         void panel?.webview.postMessage({
           type: 'saved',
           values: await deps.store.getAll(),

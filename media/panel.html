@@ -18,6 +18,7 @@
 <div class="workspace">
   <nav class="section-nav" aria-label="{{heading}}">
     <a href="#license" class="active" data-nav="license">{{section.license.title}}</a>
+    <a href="#svg" data-nav="svg">{{section.svg.title}}</a>
     <a href="#context7" data-nav="context7">{{section.context7.title}}</a>
     <a href="#deepwiki" data-nav="deepwiki">{{section.deepwiki.title}}</a>
     <a href="#github" data-nav="github">{{section.github.title}}</a>
@@ -75,6 +76,102 @@
   </div>
 </section>
 
+<!-- SVG 分区 -->
+<section data-section="svg" class="settings-section">
+  <h2>{{section.svg.title}}</h2>
+  <p class="desc">{{section.svg.description}}</p>
+
+  <h3 class="group-title">{{group.svg.preview.title}}</h3>
+
+  <div class="field check">
+    <input type="checkbox" id="svg.enableHover" data-key="svg.enableHover" />
+    <label for="svg.enableHover">{{field.svg.enableHover.label}}</label>
+    <div class="hint">{{field.svg.enableHover.hint}}</div>
+  </div>
+
+  <div class="field check">
+    <input type="checkbox" id="svg.showGutterPreview" data-key="svg.showGutterPreview" />
+    <label for="svg.showGutterPreview">{{field.svg.showGutterPreview.label}}</label>
+    <div class="hint">{{field.svg.showGutterPreview.hint}}</div>
+  </div>
+
+
+  <h3 class="group-title">{{group.svg.optimize.title}}</h3>
+
+  <div class="field check">
+    <input type="checkbox" id="svg.removeClasses" data-key="svg.removeClasses" />
+    <label for="svg.removeClasses">{{field.svg.removeClasses.label}}</label>
+    <div class="hint">{{field.svg.removeClasses.hint}}</div>
+  </div>
+
+  <div class="field check">
+    <input type="checkbox" id="svg.removeComments" data-key="svg.removeComments" />
+    <label for="svg.removeComments">{{field.svg.removeComments.label}}</label>
+    <div class="hint">{{field.svg.removeComments.hint}}</div>
+  </div>
+
+  <div class="field check">
+    <input type="checkbox" id="svg.removeDoctype" data-key="svg.removeDoctype" />
+    <label for="svg.removeDoctype">{{field.svg.removeDoctype.label}}</label>
+    <div class="hint">{{field.svg.removeDoctype.hint}}</div>
+  </div>
+
+  <div class="field check">
+    <input type="checkbox" id="svg.cleanupIds" data-key="svg.cleanupIds" />
+    <label for="svg.cleanupIds">{{field.svg.cleanupIds.label}}</label>
+    <div class="hint">{{field.svg.cleanupIds.hint}}</div>
+  </div>
+
+  <div class="field">
+    <label for="svg.floatPrecision">{{field.svg.floatPrecision.label}}</label>
+    <input type="text" id="svg.floatPrecision" data-key="svg.floatPrecision" />
+    <div class="hint">{{field.svg.floatPrecision.hint}}</div>
+  </div>
+
+  <div class="field check">
+    <input type="checkbox" id="svg.multipass" data-key="svg.multipass" />
+    <label for="svg.multipass">{{field.svg.multipass.label}}</label>
+    <div class="hint">{{field.svg.multipass.hint}}</div>
+  </div>
+
+  <div class="field check">
+    <input type="checkbox" id="svg.removeViewBox" data-key="svg.removeViewBox" />
+    <label for="svg.removeViewBox">{{field.svg.removeViewBox.label}}</label>
+    <div class="hint">{{field.svg.removeViewBox.hint}}</div>
+  </div>
+
+  <div class="field check">
+    <input type="checkbox" id="svg.removeDimensions" data-key="svg.removeDimensions" />
+    <label for="svg.removeDimensions">{{field.svg.removeDimensions.label}}</label>
+    <div class="hint">{{field.svg.removeDimensions.hint}}</div>
+  </div>
+
+  <div class="field check">
+    <input type="checkbox" id="svg.prefixIds" data-key="svg.prefixIds" />
+    <label for="svg.prefixIds">{{field.svg.prefixIds.label}}</label>
+    <div class="hint">{{field.svg.prefixIds.hint}}</div>
+  </div>
+
+  <div class="field check">
+    <input type="checkbox" id="svg.mergePaths" data-key="svg.mergePaths" />
+    <label for="svg.mergePaths">{{field.svg.mergePaths.label}}</label>
+    <div class="hint">{{field.svg.mergePaths.hint}}</div>
+  </div>
+
+  <div class="field check">
+    <input type="checkbox" id="svg.convertShapeToPath" data-key="svg.convertShapeToPath" />
+    <label for="svg.convertShapeToPath">{{field.svg.convertShapeToPath.label}}</label>
+    <div class="hint">{{field.svg.convertShapeToPath.hint}}</div>
+  </div>
+
+  <div class="field check">
+    <input type="checkbox" id="svg.collapseGroups" data-key="svg.collapseGroups" />
+    <label for="svg.collapseGroups">{{field.svg.collapseGroups.label}}</label>
+    <div class="hint">{{field.svg.collapseGroups.hint}}</div>
+  </div>
+
+</section>
+
 <!-- Context7 MCP 分区 -->
 <section data-section="context7" class="settings-section">
   <h2>{{section.context7.title}}</h2>
@@ -123,8 +220,8 @@
   <p class="desc">{{section.github.description}}</p>
   <div class="status" data-status="auth"></div>
   <div class="actions">
-    <button class="primary" data-action="signIn">{{action.signIn.label}}</button>
-    <button class="secondary" data-action="signOut">{{action.signOut.label}}</button>
+    <button class="primary" data-action="signIn" data-auth-show="signedOut">{{action.signIn.label}}</button>
+    <button class="secondary" data-action="signOut" data-auth-show="signedIn" hidden>{{action.signOut.label}}</button>
   </div>
 </section>
 

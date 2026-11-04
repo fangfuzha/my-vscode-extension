@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 
 import { SettingsStore } from './config/store';
+import { initLogger, logError, logInfo, showLog } from './logger';
 import { registerContext7Mcp } from './context7/mcp';
 import { registerDeepWikiMcp } from './deepwiki/mcp';
 import { getSessionToken } from './license/api';
@@ -11,14 +12,28 @@ import {
   refreshAuthState,
   signOutSession
 } from './panel/panel';
+import { registerSvgModule } from './svg';
 
 export function activate(context: vscode.ExtensionContext): void {
+  initLogger(context);
+  logInfo('扩展已激活，开始注册功能');
+
+  try {
+    activateFeatures(context);
+  } catch (error) {
+    logError('扩展激活失败', error);
+    throw error;
+  }
+}
+
+function activateFeatures(context: vscode.ExtensionContext): void {
   const store = new SettingsStore(context);
   // 一次性声明参与 Settings Sync 的全部 key。
   store.init();
 
   const context7Mcp = registerContext7Mcp(context, store);
   const deepWikiMcp = registerDeepWikiMcp(context, store);
+  const svgModule = registerSvgModule(context, store);
   const status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
   status.command = 'my-vscode-extension.openManager';
   context.subscriptions.push(status);
@@ -64,6 +79,10 @@ export function activate(context: vscode.ExtensionContext): void {
         case 'refreshDeepWiki':
           await deepWikiMcp.refresh();
           break;
+        case 'refreshSvg':
+          svgModule.refresh();
+          break;
+
         case 'openDeepWikiApiKeys':
           await vscode.env.openExternal(
             vscode.Uri.parse('https://app.devin.ai/settings/api-keys')
@@ -87,8 +106,13 @@ export function activate(context: vscode.ExtensionContext): void {
     ),
     vscode.commands.registerCommand('my-vscode-extension.license.addDefault', () =>
       addDefaultLicense(deps)
-    )
+    ),
+    vscode.commands.registerCommand('my-vscode-extension.showLog', () => {
+      showLog();
+    })
   );
+
+  logInfo('扩展功能注册完成');
 }
 
 export function deactivate(): void {

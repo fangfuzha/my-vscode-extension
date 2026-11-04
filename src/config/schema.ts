@@ -22,6 +22,14 @@ export interface FieldDescriptor {
   defaultValue: string | boolean;
   dynamicOptions?: 'licenses';
   storage?: 'secret';
+  /** 所属分组 id，对应 SectionDescriptor.groups。 */
+  group?: string;
+}
+
+/** 面板里的字段分组，用来给同类型的选项起一个小标题。 */
+export interface GroupDescriptor {
+  id: string;
+  title: string;
 }
 
 export interface ActionDescriptor {
@@ -37,6 +45,7 @@ export interface SectionDescriptor {
   description?: string;
   fields?: FieldDescriptor[];
   actions?: ActionDescriptor[];
+  groups?: GroupDescriptor[];
   status?: 'auth';
 }
 
@@ -117,6 +126,139 @@ export const SECTIONS: SectionDescriptor[] = [
         label: vscode.l10n.t('Add default license'),
         action: 'addDefaultLicense',
         variant: 'secondary'
+      }
+    ]
+  },
+  {
+    id: 'svg',
+    title: vscode.l10n.t('SVG'),
+    description: vscode.l10n.t(
+      'Hover and gutter previews for SVG inside source code, plus SVGO optimization.'
+    ),
+    groups: [
+      { id: 'preview', title: vscode.l10n.t('Preview options') },
+      { id: 'optimize', title: vscode.l10n.t('SVGO optimization options') }
+    ],
+    fields: [
+      {
+        key: 'svg.enableHover',
+        type: 'checkbox',
+        label: vscode.l10n.t('Enable hover preview'),
+        hint: vscode.l10n.t('Show a preview when hovering SVG markup in source files.'),
+        defaultValue: true,
+        group: 'preview'
+      },
+      {
+        key: 'svg.showGutterPreview',
+        type: 'checkbox',
+        label: vscode.l10n.t('Show gutter icons'),
+        hint: vscode.l10n.t('Show a small SVG thumbnail next to the line numbers.'),
+        defaultValue: true,
+        group: 'preview'
+      },
+
+      {
+        key: 'svg.removeClasses',
+        type: 'checkbox',
+        label: vscode.l10n.t('Remove class attributes'),
+        hint: vscode.l10n.t(
+          'Only applies to standalone .svg files. Inline framework SVGs always keep their classes.'
+        ),
+        defaultValue: true,
+        group: 'optimize'
+      },
+      {
+        key: 'svg.removeComments',
+        type: 'checkbox',
+        label: vscode.l10n.t('Remove comments'),
+        hint: vscode.l10n.t('Remove XML comments while optimizing.'),
+        defaultValue: true,
+        group: 'optimize'
+      },
+      {
+        key: 'svg.removeDoctype',
+        type: 'checkbox',
+        label: vscode.l10n.t('Remove DOCTYPE'),
+        hint: vscode.l10n.t('Remove the <!DOCTYPE> declaration while optimizing.'),
+        defaultValue: true,
+        group: 'optimize'
+      },
+      {
+        key: 'svg.cleanupIds',
+        type: 'checkbox',
+        label: vscode.l10n.t('Clean up unused IDs'),
+        hint: vscode.l10n.t(
+          'Disabled by default because it can break sprites, references and animations.'
+        ),
+        defaultValue: false,
+        group: 'optimize'
+      },
+      {
+        key: 'svg.floatPrecision',
+        type: 'text',
+        label: vscode.l10n.t('Float precision'),
+        hint: vscode.l10n.t('Decimal places kept for numbers, from 0 to 10.'),
+        defaultValue: '3',
+        group: 'optimize'
+      },
+      {
+        key: 'svg.multipass',
+        type: 'checkbox',
+        label: vscode.l10n.t('Multipass optimization'),
+        hint: vscode.l10n.t('Keep optimizing until the output stops shrinking.'),
+        defaultValue: true,
+        group: 'optimize'
+      },
+
+      {
+        key: 'svg.removeViewBox',
+        type: 'checkbox',
+        label: vscode.l10n.t('Remove viewBox'),
+        hint: vscode.l10n.t('Delete the viewBox attribute. This breaks responsive scaling.'),
+        defaultValue: false,
+        group: 'optimize'
+      },
+      {
+        key: 'svg.removeDimensions',
+        type: 'checkbox',
+        label: vscode.l10n.t('Remove width and height'),
+        hint: vscode.l10n.t(
+          'Delete the root width and height attributes so the SVG fills its container.'
+        ),
+        defaultValue: false,
+        group: 'optimize'
+      },
+      {
+        key: 'svg.prefixIds',
+        type: 'checkbox',
+        label: vscode.l10n.t('Prefix IDs'),
+        hint: vscode.l10n.t('Prefix every ID to avoid conflicts when inlining several icons.'),
+        defaultValue: false,
+        group: 'optimize'
+      },
+      {
+        key: 'svg.mergePaths',
+        type: 'checkbox',
+        label: vscode.l10n.t('Merge paths'),
+        hint: vscode.l10n.t('Turn it off if CSS targets a single path.'),
+        defaultValue: true,
+        group: 'optimize'
+      },
+      {
+        key: 'svg.convertShapeToPath',
+        type: 'checkbox',
+        label: vscode.l10n.t('Convert shapes to paths'),
+        hint: vscode.l10n.t('Convert rect, circle and ellipse into path elements.'),
+        defaultValue: true,
+        group: 'optimize'
+      },
+      {
+        key: 'svg.collapseGroups',
+        type: 'checkbox',
+        label: vscode.l10n.t('Collapse groups'),
+        hint: vscode.l10n.t('Turn it off if CSS targets a group element.'),
+        defaultValue: true,
+        group: 'optimize'
       }
     ]
   },
