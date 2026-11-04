@@ -50,6 +50,49 @@ export function fetchLicenses(token?: string): Promise<LicenseItem[]> {
   return request<LicenseItem[]>(API_BASE, token);
 }
 
+/**
+ * 非常见许可证：不在 GitHub 的「常用许可证」列表里，但可以通过
+ * GET /licenses/{key} 取到正文。列表本身随上游扩展的静态数据同步。
+ */
+export const UNCOMMON_LICENSES: LicenseItem[] = [
+  {
+    key: 'bsd-4-clause',
+    name: 'BSD 4-Clause "Original" or "Old" License',
+    spdx_id: 'BSD-4-Clause',
+    html_url: 'https://choosealicense.com/licenses/bsd-4-clause/'
+  },
+  {
+    key: 'cc-by-4.0',
+    name: 'Creative Commons Attribution 4.0 International',
+    spdx_id: 'CC-BY-4.0',
+    html_url: 'https://choosealicense.com/licenses/cc-by-4.0/'
+  },
+  {
+    key: 'isc',
+    name: 'ISC License',
+    spdx_id: 'ISC',
+    html_url: 'https://choosealicense.com/licenses/isc/'
+  },
+  {
+    key: 'lgpl-3.0',
+    name: 'GNU Lesser General Public License v3.0',
+    spdx_id: 'LGPL-3.0',
+    html_url: 'https://choosealicense.com/licenses/lgpl-3.0/'
+  },
+  {
+    key: 'wtfpl',
+    name: 'Do What The F*ck You Want To Public License',
+    spdx_id: 'WTFPL',
+    html_url: 'https://choosealicense.com/licenses/wtfpl/'
+  }
+];
+
+/** 常用列表 + 非常见列表。 */
+export async function fetchAllLicenses(token?: string): Promise<LicenseItem[]> {
+  const common = await fetchLicenses(token);
+  return [...common, ...UNCOMMON_LICENSES];
+}
+
 export function fetchLicense(key: string, token?: string): Promise<License> {
   return request<License>(`${API_BASE}/${key}`, token);
 }

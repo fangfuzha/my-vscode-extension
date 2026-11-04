@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 
 import { SettingsStore } from '../config/store';
 import { SECTIONS } from '../config/schema';
-import { fetchLicenses, getSessionAccount, RateLimitError, signOut } from './api';
+import { fetchAllLicenses, getSessionAccount, RateLimitError, signOut } from './api';
 import { LicenseItem } from './types';
 
 let panel: vscode.WebviewPanel | undefined;
@@ -166,7 +166,7 @@ export async function openManagerPanel(
 export async function loadLicenseOptions(deps: ManagerDeps): Promise<void> {
   try {
     const token = await deps.getToken(false);
-    const items: LicenseItem[] = await fetchLicenses(token);
+    const items: LicenseItem[] = await fetchAllLicenses(token);
     void panel?.webview.postMessage({
       type: 'licenses',
       items: items.map((item) => ({

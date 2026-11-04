@@ -49,5 +49,6 @@
   "Add multiple licenses": "Add multiple licenses",
   "Add default license": "Add default license",
   "Signing in raises the GitHub API limit from 60 to 5000 requests per hour. The token is managed by VS Code and never stored.": "Signing in raises the GitHub API limit from 60 to 5000 requests per hour. The token is managed by VS Code and never stored.",
-  "Manager": "Manager"
+  "Manager": "Manager",
+  "Uncommon licenses": "Uncommon licenses"
 }

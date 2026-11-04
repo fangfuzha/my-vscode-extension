@@ -49,5 +49,6 @@
   "Add multiple licenses": "添加多个许可证",
   "Add default license": "添加默认许可证",
   "Signing in raises the GitHub API limit from 60 to 5000 requests per hour. The token is managed by VS Code and never stored.": "登录后 GitHub API 限额从 60 次/小时提升到 5000 次/小时；令牌由 VS Code 托管，不会保存。",
-  "Manager": "管理面板"
+  "Manager": "管理面板",
+  "Uncommon licenses": "非常见许可证"
 }

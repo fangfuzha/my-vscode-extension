@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 
-import { fetchLicense, fetchLicenses, RateLimitError } from './api';
+import { fetchLicense, fetchLicenses, RateLimitError, UNCOMMON_LICENSES } from './api';
 import { detectAuthor, detectYear } from './git';
 import { LicenseSettings, SettingsStore } from '../config/store';
 import { renderLicenseBody } from './templates';
@@ -14,7 +14,7 @@ export interface LicenseDeps {
 }
 
 interface QuickPickLicense extends vscode.QuickPickItem {
-  key: string;
+  key?: string;
 }
 
 function toQuickPick(items: LicenseItem[], defaultKey: string): QuickPickLicense[] {
@@ -114,10 +114,18 @@ async function writeLicenses(
 
 export async function addLicense(deps: LicenseDeps, multiple: boolean): Promise<void> {
   try {
-    const items = await withRateLimitRetry(deps, (token) => fetchLicenses(token));
+    const common = await withRateLimitRetry(deps, (token) => fetchLicenses(token));
+    const items = [...common, ...UNCOMMON_LICENSES];
     const settings = deps.store.getLicense();
 
-    const selected = await vscode.window.showQuickPick(toQuickPick(items, settings.defaultKey), {
+    const quickPick: QuickPickLicense[] = toQuickPick(common, settings.defaultKey);
+    quickPick.push({
+      label: vscode.l10n.t('Uncommon licenses'),
+      kind: vscode.QuickPickItemKind.Separator
+    });
+    quickPick.push(...toQuickPick(UNCOMMON_LICENSES, settings.defaultKey));
+
+    const selected = await vscode.window.showQuickPick(quickPick, {
       canPickMany: multiple,
       placeHolder: multiple
         ? vscode.l10n.t('Select one or more licenses to create.')
@@ -129,7 +137,7 @@ export async function addLicense(deps: LicenseDeps, multiple: boolean): Promise<
     }
 
     const picked = (Array.isArray(selected) ? selected : [selected]).filter(
-      (item): item is QuickPickLicense => Boolean(item)
+      (item): item is QuickPickLicense => Boolean(item.key)
     );
     if (picked.length === 0) {
       return;
@@ -157,7 +165,8 @@ export async function addDefaultLicense(deps: LicenseDeps): Promise<void> {
   }
 
   try {
-    const items = await withRateLimitRetry(deps, (token) => fetchLicenses(token));
+    const common = await withRateLimitRetry(deps, (token) => fetchLicenses(token));
+    const items = [...common, ...UNCOMMON_LICENSES];
     const item = items.find(
       (entry) => entry.key === settings.defaultKey || entry.spdx_id === settings.defaultKey
     );
