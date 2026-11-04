@@ -1,5 +1,5 @@
 {
-  "extension.displayName": "我的 VS Code 扩展",
+  "extension.displayName": "fangfuzha-vscode-extension",
   "extension.description": "个人自用的开发辅助扩展：为项目添加 LICENSE 文件，并在一个面板里管理全部设置。",
   "command.category": "我的扩展",
   "command.licenseCategory": "许可证",
