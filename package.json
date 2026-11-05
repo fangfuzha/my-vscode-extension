@@ -48,7 +48,7 @@
     "media/icon.png",
     "syntaxes/**",
     "json5.configuration.json",
-    "third_party/vscode-json5/LICENSE"
+    "NOTICE.md"
   ],
   "contributes": {
     "mcpServerDefinitionProviders": [

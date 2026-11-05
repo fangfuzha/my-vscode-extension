@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 - JSON5 syntax highlighting for `.json5` files, following the JSON5 2.x specification (single quotes, comments, trailing commas, unquoted IdentifierName keys, hexadecimal/leading-dot/trailing-dot numbers, signed Infinity and the full escape set).
 - Language configuration for JSON5 (comments, brackets, auto-closing pairs) and a TextMate-based self test (`node scripts/check-json5.mjs`) that CI runs.
+- `NOTICE.md` carrying the upstream MIT notice for the JSON5 grammar.
 - Module documentation under `docs/json5-module.md`.
 
 > Note: this extension now owns the `json5` language id and the `source.json5` scope.

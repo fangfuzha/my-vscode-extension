@@ -4,7 +4,7 @@
 
 实现参考了社区扩展 [mrmlnc/vscode-json5](https://github.com/mrmlnc/vscode-json5)（MIT，
 其 grammar 又源自 [wiredmax/language-json5](https://github.com/wiredmax/language-json5)，同为 MIT）。
-上游版权与许可见 `third_party/vscode-json5/LICENSE`，该文件会随 vsix 一起分发。
+上游版权与许可见根目录的 `NOTICE.md`，该文件会随 vsix 一起分发。
 
 ## 组成
 
