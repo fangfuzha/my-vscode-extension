@@ -56,7 +56,7 @@ jobs:
 
       - name: Publish to Visual Studio Marketplace (OIDC trusted publishing)
         if: ${{ !inputs.dry-run }}
-        run: pnpm exec vsce publish --oidc --no-dependencies --allow-missing-repository
+        run: pnpm exec vsce publish --oidc --skip-duplicate --no-dependencies --allow-missing-repository
 
       - name: Upload VSIX artifact
         if: ${{ always() }}
