@@ -45,7 +45,10 @@
     "README.md",
     "LICENSE.md",
     "CHANGELOG.md",
-    "media/icon.png"
+    "media/icon.png",
+    "syntaxes/**",
+    "json5.configuration.json",
+    "third_party/vscode-json5/LICENSE"
   ],
   "contributes": {
     "mcpServerDefinitionProviders": [
@@ -147,7 +150,27 @@
           "group": "navigation"
         }
       ]
-    }
+    },
+    "languages": [
+      {
+        "id": "json5",
+        "aliases": [
+          "JSON5",
+          "json5"
+        ],
+        "extensions": [
+          ".json5"
+        ],
+        "configuration": "./json5.configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "json5",
+        "scopeName": "source.json5",
+        "path": "./syntaxes/json5.json"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",
@@ -165,7 +188,9 @@
     "@types/vscode": "^1.144.0",
     "@vscode/vsce": "^4.1.0",
     "esbuild": "^0.28.2",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "vscode-oniguruma": "^2.0.1",
+    "vscode-textmate": "^9.3.2"
   },
   "dependencies": {
     "svgo": "^4.1.0"

@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+
+- JSON5 syntax highlighting for `.json5` files, following the JSON5 2.x specification (single quotes, comments, trailing commas, unquoted IdentifierName keys, hexadecimal/leading-dot/trailing-dot numbers, signed Infinity and the full escape set).
+- Language configuration for JSON5 (comments, brackets, auto-closing pairs) and a TextMate-based self test (`node scripts/check-json5.mjs`) that CI runs.
+- Module documentation under `docs/json5-module.md`.
+
+> Note: this extension now owns the `json5` language id and the `source.json5` scope.
+> Uninstall **mrmlnc.vscode-json5** to avoid two grammars competing for the same language.
+
 ## [0.0.5] - 2026-11-05
 
 ### Added

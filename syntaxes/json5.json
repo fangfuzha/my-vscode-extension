@@ -1,0 +1,249 @@
+{
+  "scopeName": "source.json5",
+  "name": "JSON5",
+  "fileTypes": [
+    "json5"
+  ],
+  "comment": "JSON5 grammar for VS Code, following the JSON5 2.x specification (json5.org). Structure and scope naming follow mrmlnc.vscode-json5 (MIT), which in turn derives from wiredmax/language-json5 (MIT). Extended here for the latest JSON5 spec: \\v \\0 \\xHH escapes, leading/trailing decimal points, signed Infinity, and full ECMAScript IdentifierName keys.",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#value"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "begin": "/\\*\\*(?!/)",
+          "end": "\\*/",
+          "name": "comment.block.documentation.json5",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.json5"
+            }
+          }
+        },
+        {
+          "begin": "/\\*",
+          "end": "\\*/",
+          "name": "comment.block.json5",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.json5"
+            }
+          }
+        },
+        {
+          "match": "//.*$",
+          "name": "comment.line.double-slash.json5"
+        }
+      ]
+    },
+    "constant": {
+      "match": "\\b(?:true|false|null)\\b",
+      "name": "constant.language.json5"
+    },
+    "infinity": {
+      "match": "[+-]?\\b(?:Infinity|NaN)\\b",
+      "name": "constant.language.json5"
+    },
+    "hexNumber": {
+      "match": "[+-]?0[xX][0-9a-fA-F]+",
+      "name": "constant.hex.numeric.json5"
+    },
+    "decimalNumber": {
+      "match": "[+-]?(?:(?:[0-9]+\\.?[0-9]*|\\.[0-9]+)(?:[eE][+-]?[0-9]+)?)",
+      "name": "constant.dec.numeric.json5"
+    },
+    "stringSingle": {
+      "begin": "'",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.json5"
+        }
+      },
+      "end": "(?<!\\\\)'",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.json5"
+        }
+      },
+      "name": "string.quoted.single.json5",
+      "patterns": [
+        {
+          "match": "\\\\(?:['\"\\\\/bfnrtv0]|u[0-9a-fA-F]{4}|x[0-9a-fA-F]{2})",
+          "name": "constant.character.escape.json5"
+        },
+        {
+          "match": "\\\\.",
+          "name": "invalid.illegal.unrecognized-string-escape.json5"
+        },
+        {
+          "match": "\\n",
+          "name": "invalid.illegal.unterminated-string.json5"
+        }
+      ]
+    },
+    "stringDouble": {
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.json5"
+        }
+      },
+      "end": "(?<!\\\\)\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.json5"
+        }
+      },
+      "name": "string.quoted.double.json5",
+      "patterns": [
+        {
+          "match": "\\\\(?:['\"\\\\/bfnrtv0]|u[0-9a-fA-F]{4}|x[0-9a-fA-F]{2})",
+          "name": "constant.character.escape.json5"
+        },
+        {
+          "match": "\\\\.",
+          "name": "invalid.illegal.unrecognized-string-escape.json5"
+        },
+        {
+          "match": "\\n",
+          "name": "invalid.illegal.unterminated-string.json5"
+        }
+      ]
+    },
+    "key": {
+      "name": "string.key.json5",
+      "patterns": [
+        {
+          "include": "#stringSingle"
+        },
+        {
+          "include": "#stringDouble"
+        },
+        {
+          "match": "\\\\u[0-9a-fA-F]{4}",
+          "name": "constant.character.escape.json5"
+        },
+        {
+          "match": "[\\p{L}\\p{Nl}\\$_][\\p{L}\\p{Nl}\\p{Nd}\\$\\u200C\\u200D\\p{Mn}\\p{Mc}\\p{Pc}\\u203F\\u2040]*",
+          "name": "string.key.json5"
+        }
+      ]
+    },
+    "array": {
+      "begin": "\\[",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.array.begin.json5"
+        }
+      },
+      "end": "\\]",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.array.end.json5"
+        }
+      },
+      "name": "meta.structure.array.json5",
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#value"
+        },
+        {
+          "match": ",",
+          "name": "punctuation.separator.array.json5"
+        },
+        {
+          "match": "[^\\s\\]]",
+          "name": "invalid.illegal.expected-array-separator.json5"
+        }
+      ]
+    },
+    "object": {
+      "begin": "\\{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.dictionary.begin.json5"
+        }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.dictionary.end.json5"
+        }
+      },
+      "name": "meta.structure.dictionary.json5",
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#key"
+        },
+        {
+          "begin": ":",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.separator.dictionary.key-value.json5"
+            }
+          },
+          "end": "(,)|(?=\\})",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.separator.dictionary.pair.json5"
+            }
+          },
+          "name": "meta.structure.dictionary.value.json5",
+          "patterns": [
+            {
+              "include": "#value"
+            }
+          ]
+        },
+        {
+          "match": ",",
+          "name": "punctuation.separator.dictionary.pair.json5"
+        },
+        {
+          "match": "[^\\s\\}]",
+          "name": "invalid.illegal.expected-dictionary-separator.json5"
+        }
+      ]
+    },
+    "value": {
+      "patterns": [
+        {
+          "include": "#constant"
+        },
+        {
+          "include": "#infinity"
+        },
+        {
+          "include": "#hexNumber"
+        },
+        {
+          "include": "#decimalNumber"
+        },
+        {
+          "include": "#stringSingle"
+        },
+        {
+          "include": "#stringDouble"
+        },
+        {
+          "include": "#array"
+        },
+        {
+          "include": "#object"
+        }
+      ]
+    }
+  }
+}

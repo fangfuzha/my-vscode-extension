@@ -31,6 +31,9 @@ jobs:
       - name: Verify panel markup matches schema
         run: node scripts/check-panel.mjs
 
+      - name: Verify JSON5 grammar
+        run: node scripts/check-json5.mjs
+
       - name: Build bundle
         run: pnpm run package
 

@@ -7,6 +7,7 @@
 | [svg-module.md](./svg-module.md) | `src/svg/` | 悬停预览、行号槽图标、框架识别与 SVGO 优化 |
 | [mcp-module.md](./mcp-module.md) | `src/context7/`、`src/deepwiki/` | MCP 能力统一说明：Context7 与 DeepWiki 两个 MCP 服务器的接入、认证与配置 |
 | [highlight-module.md](./highlight-module.md) | `src/highlight/` | 选中文字后在编辑器与小地图中高亮所有相同片段 |
+| [json5-module.md](./json5-module.md) | `syntaxes/` | JSON5 2.x 语法高亮：grammar、语言配置与自测脚本 |
 | [license-module.md](./license-module.md) | `src/license/` | LICENSE 文件生成：API、命令、git 推断、模板替换与写盘 |
 | [panel-localization.md](./panel-localization.md) | `src/panel/`、`media/panel.*` | 管理面板的双语实现：文案从哪来、为什么不改成面板自译 |
 
@@ -31,6 +32,7 @@
 | SVG | [svg-module.md](./svg-module.md) |
 | Context7 / DeepWiki | [mcp-module.md](./mcp-module.md) |
 | Highlight | [highlight-module.md](./highlight-module.md) |
+| JSON5 语法高亮 | [json5-module.md](./json5-module.md) |
 | GitHub account | [license-module.md](./license-module.md#github-账号与限流)（许可证列表的取数依赖它） |
 
 ## 诊断日志
