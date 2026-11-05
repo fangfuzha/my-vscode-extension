@@ -128,5 +128,15 @@
   "Selections longer than this many characters are not matched against the document.": "超过该字符数的选区不再与文档做匹配。",
   "Clear highlight": "清除高亮",
   "Background color of the highlighted text in the editor. Pick a color or type any CSS color.": "编辑器中被高亮文字的背景色。",
-  "Color of the marker shown in the minimap and the overview ruler. Pick a color or type any CSS color.": "小地图与概览标尺上标记的颜色。"
+  "Color of the marker shown in the minimap and the overview ruler. Pick a color or type any CSS color.": "小地图与概览标尺上标记的颜色。",
+  "GitHub links": "GitHub 链接",
+  "Build a GitHub URL for the current file so you can open it in the browser.": "为当前文件生成 GitHub 链接，便于在浏览器中打开。",
+  "Always use the commit SHA": "始终使用提交 SHA",
+  "Use the last commit instead of the branch name. Branch names containing a slash also fall back to the commit.": "用最近一次提交代替分支名。分支名含斜杠时同样回退到提交。",
+  "The current file is not in a Git repository.": "当前文件不在 Git 仓库中。",
+  "No Git remote is configured for this repository.": "该仓库没有配置 Git remote。",
+  "Could not understand the Git remote URL: {0}": "无法解析 Git remote 地址：{0}",
+  "This repository has no commit yet.": "该仓库还没有任何提交。",
+  "The link points to the last commit. Local changes are not visible online.": "链接指向最近一次提交，本地未提交的改动在网页上不可见。",
+  "Failed to open the GitHub link: {0}": "打开 GitHub 链接失败：{0}"
 }

@@ -9,6 +9,7 @@
 | [highlight-module.md](./highlight-module.md) | `src/highlight/` | 选中文字后在编辑器与小地图中高亮所有相同片段 |
 | [json5-module.md](./json5-module.md) | `syntaxes/` | JSON5 2.x 语法高亮：grammar、语言配置与自测脚本 |
 | [license-module.md](./license-module.md) | `src/license/` | LICENSE 文件生成：API、命令、git 推断、模板替换与写盘 |
+| [github-module.md](./github-module.md) | `src/github/` | 在浏览器中打开当前文件在 GitHub 上的链接（含行号定位） |
 | [panel-localization.md](./panel-localization.md) | `src/panel/`、`media/panel.*` | 管理面板的双语实现：文案从哪来、为什么不改成面板自译 |
 
 ## 模块与配置的对应关系
@@ -34,6 +35,7 @@
 | Highlight | [highlight-module.md](./highlight-module.md) |
 | JSON5 语法高亮 | [json5-module.md](./json5-module.md) |
 | GitHub account | [license-module.md](./license-module.md#github-账号与限流)（许可证列表的取数依赖它） |
+| GitHub links | [github-module.md](./github-module.md) |
 
 ## 诊断日志
 

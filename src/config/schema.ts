@@ -356,6 +356,24 @@ export const SECTIONS: SectionDescriptor[] = [
     ]
   },
   {
+    id: 'githubLink',
+    title: vscode.l10n.t('GitHub links'),
+    description: vscode.l10n.t(
+      'Build a GitHub URL for the current file so you can open it in the browser.'
+    ),
+    fields: [
+      {
+        key: 'github.useCommitSha',
+        type: 'checkbox',
+        label: vscode.l10n.t('Always use the commit SHA'),
+        hint: vscode.l10n.t(
+          'Use the last commit instead of the branch name. Branch names containing a slash also fall back to the commit.'
+        ),
+        defaultValue: false
+      }
+    ]
+  },
+  {
     id: 'context7',
     title: vscode.l10n.t('Context7'),
     description: vscode.l10n.t(

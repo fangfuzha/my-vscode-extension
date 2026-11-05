@@ -14,6 +14,7 @@ import {
 } from './panel/panel';
 import { registerSvgModule } from './svg';
 import { registerHighlightModule } from './highlight';
+import { registerGitHubModule } from './github';
 
 export function activate(context: vscode.ExtensionContext): void {
   initLogger(context);
@@ -36,6 +37,7 @@ function activateFeatures(context: vscode.ExtensionContext): void {
   const deepWikiMcp = registerDeepWikiMcp(context, store);
   const svgModule = registerSvgModule(context, store);
   const highlightModule = registerHighlightModule(context, store);
+  const githubModule = registerGitHubModule(context, store);
   const status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
   status.command = 'my-vscode-extension.openManager';
   context.subscriptions.push(status);
@@ -86,6 +88,9 @@ function activateFeatures(context: vscode.ExtensionContext): void {
           break;
         case 'refreshHighlight':
           highlightModule.refresh();
+          break;
+        case 'refreshGithub':
+          githubModule.refresh();
           break;
         case 'clearHighlight':
           highlightModule.clear();

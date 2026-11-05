@@ -16,5 +16,7 @@
   "command.svg.optimize.title": "Optimize SVG",
   "command.svg.optimizeFromHover.title": "Optimize SVG from Hover",
   "command.highlight.category": "Highlight",
-  "command.highlight.clear.title": "Clear Selection Highlight"
+  "command.highlight.clear.title": "Clear Selection Highlight",
+  "command.github.category": "GitHub",
+  "command.github.openInGitHub.title": "Open in GitHub"
 }

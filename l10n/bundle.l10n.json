@@ -128,5 +128,15 @@
   "Selections longer than this many characters are not matched against the document.": "Selections longer than this many characters are not matched against the document.",
   "Clear highlight": "Clear highlight",
   "Background color of the highlighted text in the editor. Pick a color or type any CSS color.": "Background color of the highlighted text in the editor.",
-  "Color of the marker shown in the minimap and the overview ruler. Pick a color or type any CSS color.": "Color of the marker shown in the minimap and the overview ruler."
+  "Color of the marker shown in the minimap and the overview ruler. Pick a color or type any CSS color.": "Color of the marker shown in the minimap and the overview ruler.",
+  "GitHub links": "GitHub links",
+  "Build a GitHub URL for the current file so you can open it in the browser.": "Build a GitHub URL for the current file so you can open it in the browser.",
+  "Always use the commit SHA": "Always use the commit SHA",
+  "Use the last commit instead of the branch name. Branch names containing a slash also fall back to the commit.": "Use the last commit instead of the branch name. Branch names containing a slash also fall back to the commit.",
+  "The current file is not in a Git repository.": "The current file is not in a Git repository.",
+  "No Git remote is configured for this repository.": "No Git remote is configured for this repository.",
+  "Could not understand the Git remote URL: {0}": "Could not understand the Git remote URL: {0}",
+  "This repository has no commit yet.": "This repository has no commit yet.",
+  "The link points to the last commit. Local changes are not visible online.": "The link points to the last commit. Local changes are not visible online.",
+  "Failed to open the GitHub link: {0}": "Failed to open the GitHub link: {0}"
 }

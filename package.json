@@ -2,7 +2,7 @@
   "name": "fangfuzha-vscode-extension",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "publisher": "fangfuzha",
   "packageManager": "pnpm@12.15.0",
   "license": "MIT",
@@ -118,6 +118,12 @@
         "command": "my-vscode-extension.context7.checkApiKey",
         "title": "%command.context7.checkApiKey.title%",
         "category": "%command.context7.category%"
+      },
+      {
+        "command": "my-vscode-extension.github.openInGitHub",
+        "title": "%command.github.openInGitHub.title%",
+        "category": "%command.github.category%",
+        "icon": "$(link-external)"
       }
     ],
     "menus": {
@@ -141,12 +147,29 @@
         {
           "command": "my-vscode-extension.context7.checkApiKey",
           "when": "myVscodeExtension.context7AuthMode != oauth"
+        },
+        {
+          "command": "my-vscode-extension.github.openInGitHub"
         }
       ],
       "editor/title": [
         {
           "command": "my-vscode-extension.svg.optimize",
           "when": "resourceExtname == .svg",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "my-vscode-extension.github.openInGitHub",
+          "when": "resourceScheme == file",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "my-vscode-extension.github.openInGitHub",
+          "when": "resourceScheme == file",
           "group": "navigation"
         }
       ]

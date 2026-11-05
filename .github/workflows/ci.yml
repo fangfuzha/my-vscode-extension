@@ -34,6 +34,12 @@ jobs:
       - name: Verify JSON5 grammar
         run: node scripts/check-json5.mjs
 
+      - name: Compile
+        run: pnpm run compile
+
+      - name: Verify GitHub link helpers
+        run: node scripts/check-github.mjs
+
       - name: Build bundle
         run: pnpm run package
 

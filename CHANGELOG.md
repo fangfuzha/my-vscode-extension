@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.7] - 2026-11-05
+
+### Added
+
+- GitHub links module: open the current file (or the selected line range) on GitHub from the editor context menu, the explorer context menu or the command palette.
+- The link is built locally from the Git remote, the current branch and the editor selection; no third-party extension is involved.
+- The new "GitHub links" section in the manager panel offers a switch to always use the commit SHA instead of the branch name.
+- Pure-function self test for the remote parsing and URL building (`node scripts/check-github.mjs`).
+
 ## [0.0.6] - 2026-11-05
 
 ### Added

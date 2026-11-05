@@ -16,5 +16,7 @@
   "command.svg.optimize.title": "优化 SVG",
   "command.svg.optimizeFromHover.title": "从悬停预览优化 SVG",
   "command.highlight.category": "选区高亮",
-  "command.highlight.clear.title": "清除选区高亮"
+  "command.highlight.clear.title": "清除选区高亮",
+  "command.github.category": "GitHub",
+  "command.github.openInGitHub.title": "在 GitHub 打开"
 }

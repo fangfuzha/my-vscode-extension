@@ -23,6 +23,7 @@
     <a href="#context7" data-nav="context7">{{section.context7.title}}</a>
     <a href="#deepwiki" data-nav="deepwiki">{{section.deepwiki.title}}</a>
     <a href="#github" data-nav="github">{{section.github.title}}</a>
+    <a href="#githubLink" data-nav="githubLink">{{section.githubLink.title}}</a>
   </nav>
   <main>
 
@@ -284,6 +285,17 @@
   </div>
   <div class="actions">
     <button class="secondary" data-action="openDeepWikiApiKeys">{{action.openDeepWikiApiKeys.label}}</button>
+  </div>
+</section>
+
+<!-- GitHub 链接分区 -->
+<section data-section="githubLink" class="settings-section">
+  <h2>{{section.githubLink.title}}</h2>
+  <p class="desc">{{section.githubLink.description}}</p>
+  <div class="field check">
+    <input type="checkbox" id="github.useCommitSha" data-key="github.useCommitSha" />
+    <label for="github.useCommitSha">{{field.github.useCommitSha.label}}</label>
+    <div class="hint">{{field.github.useCommitSha.hint}}</div>
   </div>
 </section>
 
