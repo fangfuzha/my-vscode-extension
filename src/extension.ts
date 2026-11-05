@@ -13,6 +13,7 @@ import {
   signOutSession
 } from './panel/panel';
 import { registerSvgModule } from './svg';
+import { registerHighlightModule } from './highlight';
 
 export function activate(context: vscode.ExtensionContext): void {
   initLogger(context);
@@ -34,6 +35,7 @@ function activateFeatures(context: vscode.ExtensionContext): void {
   const context7Mcp = registerContext7Mcp(context, store);
   const deepWikiMcp = registerDeepWikiMcp(context, store);
   const svgModule = registerSvgModule(context, store);
+  const highlightModule = registerHighlightModule(context, store);
   const status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
   status.command = 'my-vscode-extension.openManager';
   context.subscriptions.push(status);
@@ -81,6 +83,12 @@ function activateFeatures(context: vscode.ExtensionContext): void {
           break;
         case 'refreshSvg':
           svgModule.refresh();
+          break;
+        case 'refreshHighlight':
+          highlightModule.refresh();
+          break;
+        case 'clearHighlight':
+          highlightModule.clear();
           break;
 
         case 'openDeepWikiApiKeys':

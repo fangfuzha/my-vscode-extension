@@ -6,12 +6,13 @@
 | --- | --- | --- |
 | [svg-module.md](./svg-module.md) | `src/svg/` | 悬停预览、行号槽图标、框架识别与 SVGO 优化 |
 | [mcp-module.md](./mcp-module.md) | `src/context7/`、`src/deepwiki/` | MCP 能力统一说明：Context7 与 DeepWiki 两个 MCP 服务器的接入、认证与配置 |
+| [highlight-module.md](./highlight-module.md) | `src/highlight/` | 选中文字后在编辑器与小地图中高亮所有相同片段 |
 | [license-module.md](./license-module.md) | `src/license/` | LICENSE 文件生成：API、命令、git 推断、模板替换与写盘 |
 | [panel-localization.md](./panel-localization.md) | `src/panel/`、`media/panel.*` | 管理面板的双语实现：文案从哪来、为什么不改成面板自译 |
 
 ## 模块与配置的对应关系
 
-三个模块共用同一套配置体系：
+所有模块共用同一套配置体系：
 
 - 所有配置项声明在 `src/config/schema.ts` 的 `SECTIONS` 里
 - 存储在 `context.globalState`（密钥类字段存 `context.secrets`）
@@ -29,6 +30,7 @@
 | License | [license-module.md](./license-module.md) |
 | SVG | [svg-module.md](./svg-module.md) |
 | Context7 / DeepWiki | [mcp-module.md](./mcp-module.md) |
+| Highlight | [highlight-module.md](./highlight-module.md) |
 | GitHub account | [license-module.md](./license-module.md#github-账号与限流)（许可证列表的取数依赖它） |
 
 ## 诊断日志
@@ -46,6 +48,7 @@
 | SVG 模块注册与当前设置快照 | 激活阶段 |
 | 活动编辑器切换、context key 的 true/false 变化 | 每次切换编辑器 |
 | 清单中的 SVG 命令自检 | 激活阶段 |
+| 选区高亮的匹配数量 | 每次重算后命中数变化时 |
 | 行号槽扫描命中的 SVG 数量 | 文档变更后（防抖 500ms） |
 | 悬停命中的片段类型与体积 | 鼠标悬停 SVG |
 | 优化的前后体积与节省比例 | 执行优化 |

@@ -6,7 +6,7 @@ import * as vscode from 'vscode';
  * 面板、存储与同步会自动跟着扩展。
  */
 
-export type FieldType = 'text' | 'password' | 'select' | 'checkbox';
+export type FieldType = 'text' | 'password' | 'select' | 'checkbox' | 'color';
 
 export interface FieldOption {
   value: string;
@@ -259,6 +259,77 @@ export const SECTIONS: SectionDescriptor[] = [
         hint: vscode.l10n.t('Turn it off if CSS targets a group element.'),
         defaultValue: true,
         group: 'optimize'
+      }
+    ]
+  },
+  {
+    id: 'highlight',
+    title: vscode.l10n.t('Highlight'),
+    description: vscode.l10n.t(
+      'Highlight every occurrence of the selected text in the editor and mark it in the minimap.'
+    ),
+    groups: [
+      { id: 'appearance', title: vscode.l10n.t('Appearance') },
+      { id: 'matching', title: vscode.l10n.t('Matching') }
+    ],
+    fields: [
+      {
+        key: 'highlight.enable',
+        type: 'checkbox',
+        label: vscode.l10n.t('Enable selection highlight'),
+        hint: vscode.l10n.t(
+          'Highlight the selected text everywhere it appears in the current document.'
+        ),
+        defaultValue: true,
+        group: 'appearance'
+      },
+      {
+        key: 'highlight.backgroundColor',
+        type: 'color',
+        label: vscode.l10n.t('Text background color'),
+        hint: vscode.l10n.t(
+          'Background color of the highlighted text in the editor. Pick a color or type any CSS color.'
+        ),
+        defaultValue: '#d4d4d4',
+        group: 'appearance'
+      },
+      {
+        key: 'highlight.overviewRulerColor',
+        type: 'color',
+        label: vscode.l10n.t('Minimap marker color'),
+        hint: vscode.l10n.t(
+          'Color of the marker shown in the minimap and the overview ruler. Pick a color or type any CSS color.'
+        ),
+        defaultValue: '#ff00c7',
+        group: 'appearance'
+      },
+      {
+        key: 'highlight.matchWholeDocument',
+        type: 'checkbox',
+        label: vscode.l10n.t('Match whole document'),
+        hint: vscode.l10n.t(
+          'Also match occurrences outside the current selection, in the whole document.'
+        ),
+        defaultValue: true,
+        group: 'matching'
+      },
+      {
+        key: 'highlight.maxSelectionLength',
+        type: 'text',
+        label: vscode.l10n.t('Maximum selection length'),
+        hint: vscode.l10n.t(
+          'Selections longer than this many characters are not matched against the document.'
+        ),
+        defaultValue: '200',
+        group: 'matching'
+      }
+    ],
+    actions: [
+      {
+        id: 'clearHighlight',
+        label: vscode.l10n.t('Clear highlight'),
+        action: 'clearHighlight',
+        variant: 'secondary'
       }
     ]
   },

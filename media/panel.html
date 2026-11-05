@@ -19,6 +19,7 @@
   <nav class="section-nav" aria-label="{{heading}}">
     <a href="#license" class="active" data-nav="license">{{section.license.title}}</a>
     <a href="#svg" data-nav="svg">{{section.svg.title}}</a>
+    <a href="#highlight" data-nav="highlight">{{section.highlight.title}}</a>
     <a href="#context7" data-nav="context7">{{section.context7.title}}</a>
     <a href="#deepwiki" data-nav="deepwiki">{{section.deepwiki.title}}</a>
     <a href="#github" data-nav="github">{{section.github.title}}</a>
@@ -170,6 +171,78 @@
     <div class="hint">{{field.svg.collapseGroups.hint}}</div>
   </div>
 
+</section>
+
+<!-- 选区高亮分区 -->
+<section data-section="highlight" class="settings-section">
+  <h2>{{section.highlight.title}}</h2>
+  <p class="desc">{{section.highlight.description}}</p>
+
+  <h3 class="group-title">{{group.highlight.appearance.title}}</h3>
+
+  <div class="field check">
+    <input type="checkbox" id="highlight.enable" data-key="highlight.enable" />
+    <label for="highlight.enable">{{field.highlight.enable.label}}</label>
+    <div class="hint">{{field.highlight.enable.hint}}</div>
+  </div>
+
+  <div class="field">
+    <label for="highlight.backgroundColor">{{field.highlight.backgroundColor.label}}</label>
+    <div class="color-row">
+      <input
+        type="color"
+        id="highlight.backgroundColor"
+        data-key="highlight.backgroundColor"
+        data-default="#d4d4d4"
+      />
+      <input
+        type="text"
+        id="highlight.backgroundColor.custom"
+        data-color-text="highlight.backgroundColor"
+        spellcheck="false"
+        placeholder="#rrggbb"
+      />
+    </div>
+    <div class="hint">{{field.highlight.backgroundColor.hint}}</div>
+  </div>
+
+  <div class="field">
+    <label for="highlight.overviewRulerColor">{{field.highlight.overviewRulerColor.label}}</label>
+    <div class="color-row">
+      <input
+        type="color"
+        id="highlight.overviewRulerColor"
+        data-key="highlight.overviewRulerColor"
+        data-default="#ff00c7"
+      />
+      <input
+        type="text"
+        id="highlight.overviewRulerColor.custom"
+        data-color-text="highlight.overviewRulerColor"
+        spellcheck="false"
+        placeholder="#rrggbb"
+      />
+    </div>
+    <div class="hint">{{field.highlight.overviewRulerColor.hint}}</div>
+  </div>
+
+  <h3 class="group-title">{{group.highlight.matching.title}}</h3>
+
+  <div class="field check">
+    <input type="checkbox" id="highlight.matchWholeDocument" data-key="highlight.matchWholeDocument" />
+    <label for="highlight.matchWholeDocument">{{field.highlight.matchWholeDocument.label}}</label>
+    <div class="hint">{{field.highlight.matchWholeDocument.hint}}</div>
+  </div>
+
+  <div class="field">
+    <label for="highlight.maxSelectionLength">{{field.highlight.maxSelectionLength.label}}</label>
+    <input type="text" id="highlight.maxSelectionLength" data-key="highlight.maxSelectionLength" />
+    <div class="hint">{{field.highlight.maxSelectionLength.hint}}</div>
+  </div>
+
+  <div class="actions">
+    <button class="secondary" data-action="clearHighlight">{{action.clearHighlight.label}}</button>
+  </div>
 </section>
 
 <!-- Context7 MCP 分区 -->

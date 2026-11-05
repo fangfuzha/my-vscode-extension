@@ -14,5 +14,7 @@
   "command.context7.checkApiKey.title": "检查 Context7 API 密钥",
   "command.svg.category": "SVG",
   "command.svg.optimize.title": "优化 SVG",
-  "command.svg.optimizeFromHover.title": "从悬停预览优化 SVG"
+  "command.svg.optimizeFromHover.title": "从悬停预览优化 SVG",
+  "command.highlight.category": "选区高亮",
+  "command.highlight.clear.title": "清除选区高亮"
 }

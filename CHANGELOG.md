@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.5] - 2026-11-05
+
+### Added
+
+- Selection highlight module: highlight every occurrence of the selected text in the editor and mark it in the minimap / overview ruler.
+- Manager panel gained a "Highlight" section with enable switch, colors, matching options and a "Clear highlight" button.
+- New command `My Extension: Clear Selection Highlight`.
+- Module documentation under `docs/highlight-module.md`.
+- The highlight colors are configured with a color picker; the color fields also accept any CSS color typed by hand.
+
 ## [0.0.4] - 2026-11-04
 
 ### Added

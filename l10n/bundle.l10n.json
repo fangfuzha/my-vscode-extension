@@ -113,5 +113,20 @@
   "No SVG metadata provided": "No SVG metadata provided",
   "Invalid SVG bounds": "Invalid SVG bounds",
   "No SVG found at cursor position ({0})": "No SVG found at cursor position ({0})",
-  "Open Manager": "Open Manager"
+  "Open Manager": "Open Manager",
+  "Highlight": "Highlight",
+  "Highlight every occurrence of the selected text in the editor and mark it in the minimap.": "Highlight every occurrence of the selected text in the editor and mark it in the minimap.",
+  "Appearance": "Appearance",
+  "Matching": "Matching",
+  "Enable selection highlight": "Enable selection highlight",
+  "Highlight the selected text everywhere it appears in the current document.": "Highlight the selected text everywhere it appears in the current document.",
+  "Text background color": "Text background color",
+  "Minimap marker color": "Minimap marker color",
+  "Match whole document": "Match whole document",
+  "Also match occurrences outside the current selection, in the whole document.": "Also match occurrences outside the current selection, in the whole document.",
+  "Maximum selection length": "Maximum selection length",
+  "Selections longer than this many characters are not matched against the document.": "Selections longer than this many characters are not matched against the document.",
+  "Clear highlight": "Clear highlight",
+  "Background color of the highlighted text in the editor. Pick a color or type any CSS color.": "Background color of the highlighted text in the editor.",
+  "Color of the marker shown in the minimap and the overview ruler. Pick a color or type any CSS color.": "Color of the marker shown in the minimap and the overview ruler."
 }

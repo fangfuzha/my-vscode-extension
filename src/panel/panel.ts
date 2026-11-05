@@ -155,6 +155,7 @@ export async function openManagerPanel(
         await deps.runAction('refreshContext7');
         await deps.runAction('refreshDeepWiki');
         await deps.runAction('refreshSvg');
+        await deps.runAction('refreshHighlight');
         void panel?.webview.postMessage({
           type: 'saved',
           values: await deps.store.getAll(),
@@ -168,6 +169,7 @@ export async function openManagerPanel(
         await deps.runAction('refreshContext7');
         await deps.runAction('refreshDeepWiki');
         await deps.runAction('refreshSvg');
+        await deps.runAction('refreshHighlight');
         void panel?.webview.postMessage({
           type: 'saved',
           values: await deps.store.getAll(),

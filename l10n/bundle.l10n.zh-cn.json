@@ -113,5 +113,20 @@
   "No SVG metadata provided": "没有提供 SVG 元信息",
   "Invalid SVG bounds": "SVG 范围无效",
   "No SVG found at cursor position ({0})": "在光标位置未找到 SVG（{0}）",
-  "Open Manager": "打开管理面板"
+  "Open Manager": "打开管理面板",
+  "Highlight": "选区高亮",
+  "Highlight every occurrence of the selected text in the editor and mark it in the minimap.": "在编辑器中高亮选中文字的所有出现位置，并在小地图上打标记。",
+  "Appearance": "外观",
+  "Matching": "匹配",
+  "Enable selection highlight": "启用选区高亮",
+  "Highlight the selected text everywhere it appears in the current document.": "高亮选中文字在当前文档中的所有出现位置。",
+  "Text background color": "文字背景色",
+  "Minimap marker color": "小地图标记色",
+  "Match whole document": "匹配整篇文档",
+  "Also match occurrences outside the current selection, in the whole document.": "同时匹配选区之外、在整篇文档中的出现位置。",
+  "Maximum selection length": "最大选区长度",
+  "Selections longer than this many characters are not matched against the document.": "超过该字符数的选区不再与文档做匹配。",
+  "Clear highlight": "清除高亮",
+  "Background color of the highlighted text in the editor. Pick a color or type any CSS color.": "编辑器中被高亮文字的背景色。",
+  "Color of the marker shown in the minimap and the overview ruler. Pick a color or type any CSS color.": "小地图与概览标尺上标记的颜色。"
 }

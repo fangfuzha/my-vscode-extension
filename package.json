@@ -2,7 +2,7 @@
   "name": "fangfuzha-vscode-extension",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "fangfuzha",
   "packageManager": "pnpm@12.15.0",
   "license": "MIT",
@@ -85,12 +85,16 @@
         "category": "%command.svg.category%",
         "icon": "$(zap)"
       },
-
       {
         "command": "my-vscode-extension.svg.optimizeFromHover",
         "title": "%command.svg.optimizeFromHover.title%",
         "category": "%command.svg.category%",
         "icon": "$(zap)"
+      },
+      {
+        "command": "my-vscode-extension.highlight.clear",
+        "title": "%command.highlight.clear.title%",
+        "category": "%command.highlight.category%"
       },
       {
         "command": "my-vscode-extension.showLog",

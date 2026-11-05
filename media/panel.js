@@ -11,6 +11,17 @@
     return document.querySelectorAll('[data-key]');
   }
 
+  // 颜色字段：色卡只认十六进制，自定义文本可以写任意 CSS 颜色
+  var HEX = /^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
+
+  function colorTexts() {
+    return document.querySelectorAll('[data-color-text]');
+  }
+
+  function pickerFor(key) {
+    return document.querySelector('[data-key="' + key + '"][type="color"]');
+  }
+
   // 把设置值填进 HTML 里已经写好的表单控件
   function applyValues(values) {
     fields().forEach(function (element) {
@@ -20,7 +31,22 @@
       }
       if (element.type === 'checkbox') {
         element.checked = !!value;
+      } else if (element.type === 'color') {
+        // 非法十六进制（例如旧的颜色名）不写进色卡，改用该字段的默认色
+        var fallback = element.dataset.default || '';
+        if (HEX.test(String(value).trim())) {
+          element.value = String(value).trim();
+        } else if (HEX.test(fallback)) {
+          element.value = fallback;
+        }
       } else {
+        element.value = value;
+      }
+    });
+
+    colorTexts().forEach(function (element) {
+      var value = values[element.dataset.colorText];
+      if (value !== undefined) {
         element.value = value;
       }
     });
@@ -33,6 +59,16 @@
       result[element.dataset.key] =
         element.type === 'checkbox' ? element.checked : element.value;
     });
+
+    // 文本框里有值时以文本为准，色卡只作为可视化与快速选择
+    colorTexts().forEach(function (element) {
+      var key = element.dataset.colorText;
+      var value = element.value.trim();
+      if (value) {
+        result[key] = value;
+      }
+    });
+
     return result;
   }
 
@@ -84,6 +120,26 @@
     });
     select.value = current;
   }
+
+  colorTexts().forEach(function (element) {
+    element.addEventListener('input', function () {
+      var picker = pickerFor(element.dataset.colorText);
+      if (picker && HEX.test(element.value.trim())) {
+        picker.value = element.value.trim();
+      }
+    });
+  });
+
+  document.querySelectorAll('input[type="color"][data-key]').forEach(function (picker) {
+    picker.addEventListener('change', function () {
+      var text = document.querySelector(
+        '[data-color-text="' + picker.dataset.key + '"]'
+      );
+      if (text) {
+        text.value = picker.value;
+      }
+    });
+  });
 
   document.getElementById('save').addEventListener('click', function () {
     post('save', { values: collect() });
