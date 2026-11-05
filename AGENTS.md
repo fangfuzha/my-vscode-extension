@@ -137,12 +137,15 @@ third_party/                第三方源码的本地参考副本（不参与打�
 
 ## 发布与 CI
 
-- `.github/workflows/ci.yml`：PR / main 分支校验（typecheck → 面板标记一致性 → bundle → `vsce ls --tree` 检查打包文件清单）
-- `.github/workflows/publish.yml`：推送 `v*` 标签或手动触发，发布到 Visual Studio Marketplace
+- `.github/workflows/ci.yml`（工作流名 CI）：PR / main 分支校验（typecheck → 面板标记一致性 → JSON5 grammar 自测 → bundle → `vsce ls --tree` 检查打包文件清单）
+- `.github/workflows/publish.yml`（工作流名 Publish）：推送 `v*` 标签或手动触发，发布到 Visual Studio Marketplace
   - 认证用 **OIDC 受信发布**（`vsce publish --oidc`），不存 PAT；需要 `permissions: id-token: write`
   - 标签触发时会校验 tag 版本与 `package.json` 的 version 一致
   - 手动触发可勾选 `dry-run` 只打包不发布
 - 真实发布前需在 Marketplace 后台为 publisher + 仓库 + 工作流文件（`publish.yml`）配置受信发布策略
+- 工作流里的 action 一律用 **Node 24 运行**的版本：
+  `actions/checkout@v7`、`actions/setup-node@v7`、`actions/upload-artifact@v7`、`pnpm/action-setup@v6`；
+  旧版本（v4 一线）会持续报 Node 20 弃用警告
 
 ## 约定
 
